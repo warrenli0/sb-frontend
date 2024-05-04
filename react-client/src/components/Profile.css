@@ -1,0 +1,122 @@
+.profile-cont {
+    background-color: #FAFBFC;
+    height: 100dvh;
+    color: #040033;
+}
+
+.profile-info  {
+    font-size: .8em;
+    width: 30%;
+    padding: 20px;
+    background-color: white;
+    position: absolute;
+    top: 35%;
+    left: 8%;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.27);
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.27);
+}
+.profile-info h2 {
+    font-weight: 500;
+}
+
+.profile-badges {
+    font-size: .8em;
+    width: 35%;
+    height: 35%;
+    padding: 20px;
+    background-color: white;
+    position: absolute;
+    top: 8%;
+    right: 8%;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.27);
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.27);
+}
+
+.profile-stats {
+    font-size: .8em;
+    width: 35%;
+    height: 35%;
+    padding: 20px;
+    background-color: white;
+    position: absolute;
+    top: 53%;
+    right: 8%;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.27);
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.27);
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 15% 85%;
+}
+
+.overall-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-column: span 2;
+}
+.overall-header select {
+    font-weight: 600;
+    font-size: large;
+    border: none;
+    background-color: #EEEEF1;
+    color: #040033;
+    border-radius: 8px;
+    padding-left: 5px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    cursor: pointer;
+    -webkit-box-shadow: 0px 2px 4px 1px rgba(129, 129, 129, 0.57);
+    -moz-box-shadow: 0px 2px 4px 1px rgba(129, 129, 129, 0.57);
+    box-shadow: 0px 2px 4px 1px rgba(129, 129, 129, 0.57);
+}
+.overall-content {
+    width: 100%;
+}
+.overall-dough-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.overall-dough-cont h3 {
+    font-weight: 600;
+}
+.dot {
+    height: 70%;
+    width: 90%;
+    background-color: #CDE7FF;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+.overall-bars {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.chunk-head {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.chunk-outer-bar {
+    width: 100%;
+    height: 30px;
+    background-color: #CDE7FF;
+    border-radius: 10px;
+}
+.chunk-inner-bar {
+    border-radius: 10px;
+}

@@ -1,0 +1,88 @@
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #040033;
+    color: white;
+    padding: 0 10px;
+    font-size: .7em;
+    height: 45px;
+}
+.top-bar h1 {
+    cursor: pointer;
+}
+.top-bar a {
+    text-decoration: none;
+    color: white;
+}
+
+.top-bar-select {
+    display: flex;
+    gap: 40px;
+}
+.top-bar-select h1 {
+    font-weight: 400;
+}
+.top-bar-select h1[data-under='2'][data-link='2'] {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+.top-bar-select h1[data-under='1'][data-link='1'] {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+.top-bar-select h1[data-under='3'][data-link='3'] {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+.top-bar-select h1[data-under='4'][data-link='4'] {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+.top-bar-select a{
+    cursor: pointer;
+    transition: all .3s;
+}
+.top-bar-select a:hover {
+    color: rgba(255, 255, 255, 0.666);
+}
+.top-bar-select div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.top-bar-select div img {
+    height: 30px;
+    cursor: pointer;
+}
+
+.top-bar-drop[data-open='false'] {
+    display: none;
+}
+.top-bar-drop {
+    position: absolute;
+    right: 0;
+    top: 34px;
+    background-color: #040033;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    z-index: 10;
+}
+.top-bar-drop h2 {
+    font-weight: 400;
+}
+.top-bar-drop a {
+    cursor: pointer;
+    transition: all .3s;
+}
+.top-bar-drop a:hover {
+    color: rgba(255, 255, 255, 0.666);
+}
+.top-bar-drop h2 {
+    cursor: pointer;
+    transition: all .3s;
+}
+.top-bar-drop h2:hover {
+    color: rgba(255, 255, 255, 0.666);
+}

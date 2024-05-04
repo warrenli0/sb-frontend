@@ -149,7 +149,7 @@ export default function SignIn({ }) {
 
     return (
         <div>
-            <div className='login-cont'>
+            <div className='login-cont reset-font'>
                 <h1 className='login-top-left'>SB</h1>
                 <img draggable="false" src={outBeach} className="login-out-beach" />
                 <img draggable="false" src={inBeach} className="login-in-beach" />

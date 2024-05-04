@@ -1,3 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    overflow-x: hidden;
+    background-color: #F3C942;
+}
+
 html, body {
     background-color: white;
 }
@@ -25,14 +36,14 @@ html, body {
     position: absolute;
     transform: translateX(-1%);
     bottom: 0;
-    width: 105%;
+    max-width: 105%;
 }
 
 .login-in-beach {
     position: absolute;
     transform: translateX(-1%);
     bottom: 0;
-    width: 105%;
+    max-width: 105%;
 }
 
 .login-beach-peng {
