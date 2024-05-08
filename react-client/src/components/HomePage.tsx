@@ -17,6 +17,7 @@ import NavBar from './NavBar';
 
 import { useState, useEffect } from "react";
 import { Textfit } from 'react-textfit';
+import { Outlet, Link } from "react-router-dom";
 
 export default function HomePage({}) {
     const [openoptions, setopenoptions] = useState(false);
@@ -92,7 +93,7 @@ export default function HomePage({}) {
                                     <h3>0% Mastery</h3>
                                 </div>
                                 <div id='module-start'>
-                                    <h2>Start</h2>
+                                    <h2><Link to="/modules/example-module">Start</Link></h2>
                                 </div>
                             </div>
                         </div>

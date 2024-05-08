@@ -15,6 +15,7 @@ import SignIn from './components/SignIn';
 import Profile from './components/Profile';
 import HomePage from './components/HomePage';
 import Modules from './components/Modules';
+import ModuleTemplate from './components/ModuleTemplate';
 
 const App = () => {
   const { currentUser, logout } = useAuth();
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/modules" element={<Modules />} />
+        <Route path="/modules/example-module" element={<ModuleTemplate />} />
       </Routes>
     </Router>
   );
@@ -44,6 +46,7 @@ const App = () => {
 
 export default App;
 
+// old navbar, just commented it here
 /* 
 
   <nav className="bg-white px-4 py-2 shadow-md">
