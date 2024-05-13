@@ -17,10 +17,11 @@ import NavBar from './NavBar';
 
 import { useState, useEffect } from "react";
 import { Textfit } from 'react-textfit';
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 
 export default function HomePage({}) {
     const [openoptions, setopenoptions] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <div className='home-cont'>
@@ -35,7 +36,7 @@ export default function HomePage({}) {
                             <img src={rightArrow}/>
                         </div>
                         <div className='head-streak'>
-
+                            <h2>3 Days 🔥</h2>
                         </div>
                     </div>
                     {/*
@@ -130,7 +131,7 @@ export default function HomePage({}) {
                         <div className='qlist-bar'></div>
                     </div>
                     <div className='qlist-box'>
-                        <div className='qlist-qCont' data-status='complete'>
+                        <div className='qlist-qCont' data-status='complete' onClick={() => {navigate('/example-question');}}>
                             <div className='question-meta'>
                                 <h3>Problem of the Day: Graphing Linear Equations #5</h3>
                                 <h4>Algebra</h4>

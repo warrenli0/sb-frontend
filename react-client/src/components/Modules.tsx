@@ -10,6 +10,10 @@ import { Textfit } from 'react-textfit';
 import { Outlet, Link } from "react-router-dom";
 
 export default function Modules({}) {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, []);
+      
     return (
         <div className=''>
             <NavBar under="2"/>

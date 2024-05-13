@@ -41,7 +41,7 @@ export default function ModuleTemplate({prevRoute='/modules'}: any) {
                     <h3>Fully complete this module to earn this badge!</h3>
                 </div>
                 <div className='module-temp-continue'>
-                    <h2>Continue</h2>
+                    <h2>Start</h2>
                 </div>
             </div>
         </div>

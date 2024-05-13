@@ -22,6 +22,17 @@
     -moz-box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
     box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
 }
+.home-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.head-streak {
+    color: #F23818;
+    background-color: #FFDBDB;
+    padding: 3px 10px;
+    border-radius: 10px;
+}
 .head-info {
     display: flex;
     align-items: center;
@@ -270,6 +281,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 .qlist-qCont[data-status='complete'] {
     background-color: #CDFFC5;
@@ -279,6 +291,19 @@
 }
 .qlist-qCont[data-status='incomplete'] {
     background-color: #FFE5B1;
+}
+.qlist-qCont:hover {
+    background-color: #d9d9d9;
+    transition: all .1s;
+}
+.qlist-qCont:hover[data-status='complete'] {
+    background-color: #aad2a4;
+}
+.qlist-qCont:hover[data-status='redo'] {
+    background-color: #e6a49f;
+}
+.qlist-qCont:hover[data-status='incomplete'] {
+    background-color: #e3cc9e;
 }
 .question-status {
     display: flex;
