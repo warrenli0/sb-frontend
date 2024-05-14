@@ -131,7 +131,7 @@ export default function HomePage({}) {
                         <div className='qlist-bar'></div>
                     </div>
                     <div className='qlist-box'>
-                        <div className='qlist-qCont' data-status='complete' onClick={() => {navigate('/example-question');}}>
+                        <div className='qlist-qCont' data-status='complete' onClick={() => {navigate('/example-question')}}>
                             <div className='question-meta'>
                                 <h3>Problem of the Day: Graphing Linear Equations #5</h3>
                                 <h4>Algebra</h4>
