@@ -38,6 +38,9 @@
     align-items: center;
     gap: 15px;
 }
+.head-info h1 {
+    font-weight: 800;
+}
 .head-info img{
     height: 30px;
     cursor: pointer;
@@ -179,6 +182,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.module-cont-head h1 {
+    font-weight: 800;
 }
 .module-cont-head div{
     display: flex;

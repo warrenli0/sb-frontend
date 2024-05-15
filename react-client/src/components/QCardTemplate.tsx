@@ -4,9 +4,11 @@ import flag from '../images/flagged.png';
 import unflag from '../images/unflagged.png';
 import share from '../images/share-icon.png';
 import arrow from "../images/Arrow.png"
-import note from "../images/note-icon.png"
+import note from "../images/note-top.png"
 import show from "../images/Show.png"
 import hide from "../images/Hide.png"
+
+import TheNotepad from './TheNotepad';
 
 import { useState, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
@@ -17,6 +19,7 @@ export default function QCardTemplate({}) {
     const [selectedOption, setselectedOption] = useState('0'); // 0 = none
     const [isFlagged, setisFlagged] = useState(false); // default is false
     const [showTimer, setshowTimer] = useState(true); // default is true
+    const [noteText, setnoteText] = useState(''); // for notepad
 
     if (isNotepadOpen == false) {
         return (
@@ -82,14 +85,31 @@ export default function QCardTemplate({}) {
         return (
             <div className='qcard-bg' data-noteshow={true}>
                 <div className='qcard-left-bar'>
-                    <img src={note} onClick={() => {setisNotepadOpen(false)}}/>
-                    <img src={unflag} id="unflag" data-flag={isFlagged.toString()} onClick={() => {setisFlagged(true)}}/>
-                    <img src={flag} id="flag" data-flag={isFlagged.toString()} onClick={() => {setisFlagged(false)}}/>
+                    <div>
+                        <div id='qcard-back-button' style={{"marginLeft": "20px"}}>
+                            <h3><Link to={"/home"}>Exit</Link></h3>
+                        </div>
+                    </div>
+                    <div className='qcard-left-info'>
+                        <h1>Q.1</h1>
+                        <h3><i>Writing</i></h3>
+                    </div>
+                    <div className='qcard-left-info qcard-timer-thing'>
+                        <img src={show} onClick={() => {setshowTimer(false)}} id="show" data-show={showTimer.toString()}/>
+                        <img src={hide} onClick={() => {setshowTimer(true)}} id="hide" data-show={showTimer.toString()}/>
+                        <h1 data-show={showTimer.toString()}>00:00</h1>
+                    </div>
+                    <div className='qcard-notepad-cont'>
+                        <h4 onClick={() => {setisNotepadOpen(false)}}><i>close</i></h4>
+                        <TheNotepad noteText={noteText} setnoteText={setnoteText}/>
+                    </div>
                 </div>
                 <div className='qcard-vert-line'></div>
                 <div>
                     <div className='qcard-main-content' data-noteshow={true}>   
                         <img src={share} id="share" data-noteshow={true}/> 
+                        <img src={unflag} id="unflag" data-flag={isFlagged.toString()} onClick={() => {setisFlagged(true)}}/>
+                        <img src={flag} id="flag" data-flag={isFlagged.toString()} onClick={() => {setisFlagged(false)}}/>
                         <div className='qcard-text' data-noteshow={true}>
                             <h2>Maria is staying at a hotel that charges $99.95 per night plus tax for a room. A tax of 8% is applied to the room rate, and an additional onetime untaxed fee of $5.00 is charged by the hotel. Which of the following represents Maria’s total charge, in dollars, for staying x nights?</h2>
                         </div>
