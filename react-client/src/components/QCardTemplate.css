@@ -9,13 +9,13 @@
     grid-template-rows: 100%;
 }
 .qcard-top-bar {
-    display: grid;
-    grid-template-columns: minmax(0, 50%) minmax(0, 50%);
-    grid-template-rows: 100%;
-    gap: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #0F60D9;
     color: white;
     padding: 0 10px;
+    padding-right: 20px;
     height: 45px;
     font-size: .9em;
 }
@@ -35,7 +35,7 @@
 }
 .qcard-question-head {
     display: flex;
-    gap: 10px;
+    gap: 20px;
 }
 .qcard-question-head h3 {
     font-weight: 500;
@@ -133,6 +133,7 @@
     position: relative;
     right: 15px;
     width: 60px;
+    cursor: pointer;
 }
 .qcard-main-content {
     width: 100%;
@@ -157,10 +158,26 @@
 }
 .qcard-text {
     padding:  10px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     overflow: scroll;
 }
 .qcard-text h2 {
     font-weight: 500;
+}
+.qcard-explanation {
+    display: none;
+}
+.qcard-explanation[data-ecard='true'] {
+    display: block;
+    padding:  10px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    overflow: scroll;
+}
+.qcard-explanation[data-ecard='true'][data-noteshow='true'] {
 }
 .qcard-choices {
     padding: 10px 40px;
@@ -168,6 +185,9 @@
     flex-direction: column;
     gap: 30px;
     overflow: scroll;
+}
+.qcard-choices[data-ecard='true'] {
+    display: none;
 }
 .qcard-answer-choice {
     display: flex;
@@ -178,20 +198,47 @@
     cursor: pointer;
     transition: all .2s;
 }
+.qcard-answer-choice[data-ecard='false'] {
+    display: none;
+}
+.qcard-answer-choice[data-ecard='true'] {
+    display: flex;
+}
 .qcard-answer-choice:hover {
     background-color: #FFD66D;
+}
+#qcard-explainme {
+    font-weight: 500;
+}
+.qcard-answer-choice[data-ecard='true'] {
+    cursor: auto;pointer-events: none;
+}
+.qcard-answer-choice[data-correct='true'] {
+    background-color: #58FF3D !important;
 }
 #choice1[data-selected='1'] {
     background-color: #FFB800;
 }
+#choice1[data-selected='1'][data-correct='false'] {
+    background-color: #FF483D;
+}
 #choice2[data-selected='2'] {
     background-color: #FFB800;
+}
+#choice2[data-selected='2'][data-correct='false'] {
+    background-color: #FF483D;
 }
 #choice3[data-selected='3'] {
     background-color: #FFB800;
 }
+#choice3[data-selected='3'][data-correct='false'] {
+    background-color: #FF483D;
+}
 #choice4[data-selected='4'] {
     background-color: #FFB800;
+}
+#choice4[data-selected='4'][data-correct='false'] {
+    background-color: #FF483D;
 }
 #qcard-letter {
     display: flex;
@@ -232,14 +279,12 @@
 }
 .qcard-main-content[data-noteshow='true'] {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 40px);
     grid-template-rows: minmax(0, 100%) 60px;
 }
 .qcard-text[data-noteshow='true'] {
-    padding: 45px;
 }
 .qcard-choices[data-noteshow='true'] {
-    padding: 45px;
 }
 #share[data-noteshow='true'] {
     position: absolute;
@@ -408,7 +453,7 @@
 .note-input {
     resize: none;
     width: 95%;
-    height: 95%;
+    height: 92%;
     padding: 10px;
     border: none;
     outline: none;
@@ -460,12 +505,85 @@
     left: 0;
     transform: translateY(10%);
 }
+.beach-text-container{
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    border-radius: 10px;
+    padding: .5em;
+    text-align: left;
+    box-shadow: 0px 0px 5px 0px rgba(179, 179, 179, 0.75);
+    opacity: 1;
+    display: none;
+}
+.beach-text-container[data-story='0'] {
+    opacity: 1;
+}
+.beach-text-container[data-story='1'] {
+    display: block;
+}
+.beach-text-container[data-story='2'] {
+    display: block;
+    transition: opacity 2s;
+    opacity: 0;
+}
+.beach-text-container[data-story='fin'] {
+    display: none;
+}
+.beach-text-container h3[data-story='0']{
+    width: 0;
+}
+.beach-text-container h3[data-story='1']{
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    animation-name: review-typing;
+    animation-duration: .5s;
+    animation-timing-function: steps(200, end);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+.beach-text-container h3[data-story='2']{
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    animation-name: review-typing;
+    animation-duration: .5s;
+    animation-timing-function: steps(200, end);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+.beach-text-container h3[data-version='4']{
+    display: none;
+}
+.beach-text-container h3[data-version='3']{
+    display: none;
+}
+.beach-text-container h3[data-version='1']{
+    display: none;
+}
+.beach-text-container h3:nth-child(1) {
+    visibility: hidden;
+    animation-delay: 0s;
+}
+.beach-text-container h3:nth-child(2) {
+    visibility: hidden;
+    animation-delay: .5s;
+}
 .note-calc-cont {
     position: absolute;
-    width: 99.5%;
+    width: 100%;
     height: 100%;
     visibility: hidden;
 }
 .note-calc-cont[data-version='3'] {
     visibility: visible;
+}
+
+@keyframes review-typing {
+    from { width: 0; }
+    to { width: 100%; visibility: visible; }
 }

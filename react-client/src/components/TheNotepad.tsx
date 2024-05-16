@@ -17,6 +17,22 @@ declare const window: any;
 function Content({ version, noteText, setnoteText }: any) {
     const calculatorRef = useRef(null);
 
+    const [story1, setstory1] = useState(["Nice to meet you!", "I'm just your", "Except that I am a", "I learned it all", "She used to teach", "I remember this", "I got a geometry", "She drew out a", "It was almost as", "and I learned", "and what it", "to be a penguin.", "In the days of ice,", "We were primitive", "Our species is", "and we began to", "the World. It is", "Knowledge is", "We penguins", "In order to not", "savage, primal", "We wrote", "and made the", "and we test", "and make them", "to determine their", 'Just like you I', "Anyways, I'll let", "Thanks for"]);
+    const [story2, setstory2] = useState(["I am Coco.", "average penguin", "master of SAT", "from my mom", "me right here", "one time", "problem wrong", "circle in the sand", "big as my head", "about geometry...", "means to be...", "", "we would swim", "& hunted to live", "now civilized...", "learn about...", "truly incredible.", "power", "devised a plan.", "revert to our ...", "ways...", "textbooks...", "education system", "young penguins", "all take the SAT", "colleges...", "suppose!", "you get back to it", "listening, i <3 u"]);
+    const [storyindex, setstoryindex] = useState(-1);
+    const [showStory, setshowStory] = useState('0');
+    function pingClick() {
+        if (storyindex == (story1.length - 1)) {
+            setshowStory('fin');
+            return;
+        }
+        setshowStory('0'); // opacity down
+        setTimeout(function(){
+            setstoryindex(storyindex + 1);
+            setshowStory('1');
+        }, 10);
+    }
+
     useEffect(() => {
         if (calculatorRef.current) {
 
@@ -34,10 +50,14 @@ function Content({ version, noteText, setnoteText }: any) {
             <div className="note-ping-cont" data-version={version}>
                 <div>
                     <img src={beach_umbrella} className="beach-umbrella" />
+                    <div className='beach-text-container' data-story={showStory}>
+                        <h3 data-version={version} data-story={showStory}>{story1[storyindex]}</h3>
+                        <h3 data-version={version} data-story={showStory}>{story2[storyindex]}</h3>
+                    </div>
                 </div>
                 <div className="note-ping-beach-cont">
                     <img src={beach} className="ping-beach" />
-                    <img src={beach_peng} className="ping-on-beach" />
+                    <img src={beach_peng} className="ping-on-beach" onClick={() => {pingClick()}}/>
                     <img src={beach_ball} className="beach-ball" />
                 </div>
             </div>
