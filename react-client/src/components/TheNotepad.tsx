@@ -40,7 +40,7 @@ function Content({version, noteText, setnoteText}: any) {
                 </div>
             </div>
             {/* desmos calculator TBD */}
-            <div className="note-calc-cont" ref={calculatorRef} data-version={version}><p>calc</p></div>
+            <div className="note-calc-cont" ref={calculatorRef} data-version={version}></div>
         </div>
     )
 }
