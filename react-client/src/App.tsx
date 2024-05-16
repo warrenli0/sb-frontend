@@ -23,7 +23,7 @@ const App = () => {
   const title = 'My App';
 
   return (
-    <Router>
+    <Router basename='/sb-frontend'>
       <Routes>
         <Route path="/" element={<HomeComponent />} />
         <Route path="/login" element={<LoginComponent />} />
