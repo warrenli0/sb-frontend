@@ -21,6 +21,7 @@ export default function QCardTemplate({}) {
     const [showTimer, setshowTimer] = useState(true); // default is true
     const [noteText, setnoteText] = useState(''); // for notepad
     const [showEcard, setshowEcard] = useState(false); // default is false
+    const [checked, setchecked] = useState(false); // default is false | understood prob
 
     const [currQuestion, setcurrQuestion] = useState({
         id: 'example',
@@ -28,6 +29,9 @@ export default function QCardTemplate({}) {
         text: "Penny had spent 5 hours prescribing meditation as a remedy to his friend's insomnia, and had often propounded spirituality as the cure to common predicaments.",
         problem: "As used in the text, what does the word \"propounded\" most nearly mean?",
         explanation: "Meditation is a form of spirituality, so the context suggests that Penny advises others to use spirituality as a cure to common problems. Propound means to put forth an idea for others to consider, so suggest most nearly means the same thing.",
+        subject: "English",
+        subtopic: "Vocab in Context",
+        difficulty: "Hard",
         options: [{
             id: 0,
             text: 'neglected',
@@ -62,7 +66,9 @@ export default function QCardTemplate({}) {
                     </div>
                     <div className='qcard-question-head'>
                         <h1>Q.1</h1>
-                        <h3><i>Writing</i></h3>
+                        <h3><i>{currQuestion.subject}</i></h3>
+                        <h3 data-ecard={showEcard}><i>{currQuestion.subtopic}</i></h3>
+                        <h3 data-ecard={showEcard} id={'sub-color-' + currQuestion.difficulty}><i>{currQuestion.difficulty}</i></h3>
                     </div>
                     <div className='qcard-timer-head' style={{"justifyContent": 'flex-start', "gap": '20px'}}>
                         <img src={show} onClick={() => {setshowTimer(false)}} id="show" data-show={showTimer.toString()}/>
@@ -123,10 +129,22 @@ export default function QCardTemplate({}) {
                         </div>
                     </div>
                     <div className='qcard-explanation' data-ecard={showEcard}>
-                        <div>
+                        <div className='qcard-explanation-meta'>
                             <h2><b>Explanation</b></h2>
+                            <h2 id="qcard-explainme" data-ecard={showEcard}>{currQuestion.explanation}</h2>
                         </div>
-                        <h2 id="qcard-explainme" data-ecard={showEcard}>{currQuestion.explanation}</h2>
+                        <div className='qcard-understandme'>
+                            <div className='qcard-understand-bar'>
+                                <div></div>
+                            </div>
+                            <div className='qcard-understand-check'>  
+                                <div>
+                                    <input type="checkbox" id="e-understood" name="check" checked={checked} onChange={() => {setchecked(!checked)}}/>
+                                    <h2>I understand this problem</h2>
+                                </div>
+                                
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -212,11 +230,22 @@ export default function QCardTemplate({}) {
                             </div>
                         </div>
                         <div className='qcard-explanation' data-ecard={showEcard} data-noteshow={true}>
-                            <div>
+                            <div className='qcard-explanation-meta'>
                                 <h2><b>Explanation</b></h2>
+                                <h2 id="qcard-explainme" data-ecard={showEcard}>{currQuestion.explanation}</h2>
                             </div>
-                            <h2 id="qcard-explainme" data-ecard={showEcard}>{currQuestion.explanation}</h2>
-
+                            <div className='qcard-understandme'>
+                                <div className='qcard-understand-bar'>
+                                    <div></div>
+                                </div>
+                                <div className='qcard-understand-check'>  
+                                    <div>
+                                        <input type="checkbox" id="e-understood" name="check" checked={checked} onChange={() => {setchecked(!checked)}}/>
+                                        <h2>I understand this problem</h2>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
                         <div className='qcard-bottom-icons' data-noteshow={true}>
                             <img src={arrow} id="arrow" data-ecard={showEcard} data-show={selectedOption} onClick={() => {setshowEcard(true)}}/>

@@ -21,7 +21,7 @@ export default function Modules({}) {
                 <div className='module-header'>
                     <div className='module-types'>
                         <h1 data-selected='1' data-type='1'>Math</h1>
-                        <h1>Writing</h1>
+                        <h1>English</h1>
                         <h1>Reading</h1>
                         <h1>All</h1>
                     </div>

@@ -39,6 +39,19 @@
 }
 .qcard-question-head h3 {
     font-weight: 500;
+    display: block;
+}
+.qcard-question-head h3[data-ecard='false'] {
+    display: none;
+}
+#sub-color-Hard {
+    color: #FF483D;
+}
+#sub-color-Easy {
+    color: #58FF3D;
+}
+#sub-color-Medium {
+    color: #FFB800;
 }
 .qcard-timer-head img{
     height: 35px;
@@ -170,14 +183,49 @@
     display: none;
 }
 .qcard-explanation[data-ecard='true'] {
-    display: block;
     padding:  10px 40px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: minmax(0, 100%) 80px;
+}
+.qcard-explanation-meta {
     display: flex;
     flex-direction: column;
     gap: 30px;
     overflow: scroll;
 }
-.qcard-explanation[data-ecard='true'][data-noteshow='true'] {
+.qcard-understandme {
+    position: relative;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 2px minmax(0, 100%);
+}
+.qcard-understand-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.qcard-understand-bar div {
+    width: 50%;
+    height: 100%;
+    background-color: #03045E;
+    border-radius: 10px;
+}
+.qcard-understand-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.qcard-understand-check div {
+    display: flex;
+    gap: 20px;
+}
+.qcard-understand-check input{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
 }
 .qcard-choices {
     padding: 10px 40px;
