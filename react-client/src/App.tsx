@@ -17,6 +17,7 @@ import HomePage from './components/HomePage';
 import Modules from './components/Modules';
 import ModuleTemplate from './components/ModuleTemplate';
 import QCardTemplate from './components/QCardTemplate';
+import LatexComponent from './components/LatexComponent';
 
 const App = () => {
   const { currentUser, logout } = useAuth();
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/modules" element={<Modules />} />
         <Route path="/modules/example-module" element={<ModuleTemplate />} />
         <Route path="/example-question" element={<QCardTemplate />} />
+        <Route path="/latex-test" element={<LatexComponent />} />
       </Routes>
     </Router>
   );

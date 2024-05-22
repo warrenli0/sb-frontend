@@ -10,12 +10,14 @@ import hide from "../images/Hide.png"
 
 import TheNotepad from './TheNotepad';
 
+import { MathJaxContext, MathJax } from 'better-react-mathjax';
+
 import { useState, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { Textfit } from 'react-textfit';
 
 export default function QCardTemplate({}) {
-    const [isNotepadOpen, setisNotepadOpen] = useState(false); // default is true
+    const [isNotepadOpen, setisNotepadOpen] = useState(true); // default is true
     const [selectedOption, setselectedOption] = useState('0'); // 0 = none
     const [isFlagged, setisFlagged] = useState(false); // default is false
     const [showTimer, setshowTimer] = useState(true); // default is true
@@ -26,33 +28,46 @@ export default function QCardTemplate({}) {
     const [currQuestion, setcurrQuestion] = useState({
         id: 'example',
         format: 1,
-        text: "Penny had spent 5 hours prescribing meditation as a remedy to his friend's insomnia, and had often propounded spirituality as the cure to common predicaments.",
-        problem: "As used in the text, what does the word \"propounded\" most nearly mean?",
-        explanation: "Meditation is a form of spirituality, so the context suggests that Penny advises others to use spirituality as a cure to common problems. Propound means to put forth an idea for others to consider, so suggest most nearly means the same thing.",
+        text: `What is the median of the \\(\\textit{seven}\\) data values below?
+        \\[10,\\;13,\\;14,\\;14,\\;12,\\;13,\\;14\\]`,
+        problem: "",
+        //text: "Penny had spent 5 hours prescribing meditation as a remedy to his friend's insomnia, and had often propounded spirituality as the cure to common predicaments.",
+        //problem: "As used in the text, what does the word \"propounded\" most nearly mean?",
+        
+        explanation: 'The answer is \\(\\textbf{C}\\). If you order the numbers, you get: \\[10,\\;12,\\;13,\\;13,\\;14,\\;14,\\;14\\] Since there are an odd number of elements, the median is simply the middle number of the ordered set. Thus, the median is 13. \\[10,\\;12,\\;13,\\;\\fbox{13},\\;14,\\;14,\\;14\\]',
         subject: "English",
         subtopic: "Vocab in Context",
         difficulty: "Hard",
         options: [{
             id: 0,
-            text: 'neglected',
+            text: '10',
             isCorrect: false,
         },
         {
             id: 1,
-            text: 'preferred',
+            text: '12',
             isCorrect: false,
         },
         {
             id: 2,
-            text: 'suggested',
+            text: '13',
             isCorrect: true,
         },
         {
             id: 3,
-            text: 'discussed',
+            text: '14',
             isCorrect: false,
         },]
     })
+
+    const config = {
+        loader: { load: ["[tex]/html"] },
+        tex: {
+          packages: { "[+]": ["html"] },
+          inlineMath: [["$", "$"]],
+          displayMath: [["$$", "$$"]]
+        }
+      };
 
     if (isNotepadOpen == false) {
         return (
@@ -73,7 +88,7 @@ export default function QCardTemplate({}) {
                     <div className='qcard-timer-head' style={{"justifyContent": 'flex-start', "gap": '20px'}}>
                         <img src={show} onClick={() => {setshowTimer(false)}} id="show" data-show={showTimer.toString()}/>
                         <img src={hide} onClick={() => {setshowTimer(true)}} id="hide" data-show={showTimer.toString()}/>
-                        <h1 data-show={showTimer.toString()}>00:00</h1>
+                        <h1 data-show={showTimer.toString()}>01:38</h1>
                     </div>
                 </div>
                 <div className='qcard-top-line'></div>
@@ -84,8 +99,14 @@ export default function QCardTemplate({}) {
                 </div>
                 <div className='qcard-main-content'>    
                     <div className='qcard-text'>
-                        <h2>{currQuestion.text}</h2>
-                        <h2>{currQuestion.problem}</h2>
+                        <div className="latex-h2">
+                            {/* https://github.com/fast-reflexes/better-react-mathjax?tab=readme-ov-file */}
+                            <MathJaxContext version={2}>
+                                <MathJax hideUntilTypeset={"first"}>
+                                    {currQuestion.text}
+                                </MathJax>
+                            </MathJaxContext>
+                        </div>
                         <div className='qcard-answer-choice' id="choice1" data-correct={currQuestion.options[0].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                             <div id="qcard-letter"><h2><span>A</span></h2></div>
                             <div className='qcard-choice-cont'><h2>{currQuestion.options[0].text}</h2></div>
@@ -162,14 +183,20 @@ export default function QCardTemplate({}) {
                             <h3><Link to={"/home"}>Exit</Link></h3>
                         </div>
                     </div>
-                    <div className='qcard-left-info'>
-                        <h1>Q.1</h1>
-                        <h3><i>Writing</i></h3>
+                    <div className='qcard-left-cont'>
+                        <div className='qcard-left-info'>
+                            <h1>Q.1</h1>
+                            <h3><i>Writing</i></h3>
+                        </div>
+                        <div className='qcard-left-info' data-ecard={showEcard}>
+                            <h3 data-ecard={showEcard}><i>{currQuestion.subtopic}</i></h3>
+                            <h3 data-ecard={showEcard} id={'sub-color-' + currQuestion.difficulty}><i>{currQuestion.difficulty}</i></h3>
+                        </div>
                     </div>
                     <div className='qcard-left-info qcard-timer-thing'>
                         <img src={show} onClick={() => {setshowTimer(false)}} id="show" data-show={showTimer.toString()}/>
                         <img src={hide} onClick={() => {setshowTimer(true)}} id="hide" data-show={showTimer.toString()}/>
-                        <h1 data-show={showTimer.toString()}>00:00</h1>
+                        <h1 data-show={showTimer.toString()}>01:38</h1>
                     </div>
                     <div className='qcard-notepad-cont'>
                         <h4 onClick={() => {setisNotepadOpen(false)}}><i>close</i></h4>
@@ -185,8 +212,17 @@ export default function QCardTemplate({}) {
                     </div>
                     <div className='qcard-main-content' data-noteshow={true}> 
                         <div className='qcard-text' data-noteshow={true}>
+                            {/*
                             <h2>{currQuestion.text}</h2>
-                            <h2>{currQuestion.problem}</h2>
+        <h2>{currQuestion.problem}</h2>*/}
+                            <div className="latex-h2">
+                                {/* https://github.com/fast-reflexes/better-react-mathjax?tab=readme-ov-file */}
+                                <MathJaxContext version={2}>
+                                    <MathJax hideUntilTypeset={"first"}>
+                                        {currQuestion.text}
+                                    </MathJax>
+                                </MathJaxContext>
+                            </div>
                             <div className='qcard-answer-choice' id="choice1" data-correct={currQuestion.options[0].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                                 <div id="qcard-letter"><h2><span>A</span></h2></div>
                                 <div className='qcard-choice-cont'><h2>{currQuestion.options[0].text}</h2></div>
