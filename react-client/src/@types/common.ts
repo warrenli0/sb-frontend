@@ -5,6 +5,17 @@ export interface UserProfile {
     photo: string;
 }
 
+export interface Module {
+    _id: string;
+    title: string;
+    author: string;
+    category: string;
+    difficulty: string;
+    description: string;
+    questins: Question[];
+    estimated_time: string;
+}
+
 export interface Question {
     _id: string;
     type: string;

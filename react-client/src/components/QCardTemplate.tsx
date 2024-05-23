@@ -16,7 +16,11 @@ import { useState, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { Textfit } from 'react-textfit';
 
-export default function QCardTemplate({}) {
+import { Question } from '../@types/common';
+import useQuestionService from '../hooks/useQuestionService';
+import { useParams } from 'react-router-dom';
+
+export default function QCardTemplate({ }) {
     const [isNotepadOpen, setisNotepadOpen] = useState(true); // default is true
     const [selectedOption, setselectedOption] = useState('0'); // 0 = none
     const [isFlagged, setisFlagged] = useState(false); // default is false
@@ -24,6 +28,21 @@ export default function QCardTemplate({}) {
     const [noteText, setnoteText] = useState(''); // for notepad
     const [showEcard, setshowEcard] = useState(false); // default is false
     const [checked, setchecked] = useState(false); // default is false | understood prob
+
+    const { getQuestion } = useQuestionService();
+    const [question, setQuestion] = useState<Question>();
+    const { id } = useParams();
+
+    useEffect(() => {
+        const fetchQuestion = async () => {
+            const data = await getQuestion(id || '');
+            if (data) {
+                setQuestion(data);
+            }
+        };
+
+        fetchQuestion();
+    }, [id]);
 
     const [currQuestion, setcurrQuestion] = useState({
         id: 'example',
@@ -33,7 +52,7 @@ export default function QCardTemplate({}) {
         problem: "",
         //text: "Penny had spent 5 hours prescribing meditation as a remedy to his friend's insomnia, and had often propounded spirituality as the cure to common predicaments.",
         //problem: "As used in the text, what does the word \"propounded\" most nearly mean?",
-        
+
         explanation: 'The answer is \\(\\textbf{C}\\). If you order the numbers, you get: \\[10,\\;12,\\;13,\\;13,\\;14,\\;14,\\;14\\] Since there are an odd number of elements, the median is simply the middle number of the ordered set. Thus, the median is 13. \\[10,\\;12,\\;13,\\;\\fbox{13},\\;14,\\;14,\\;14\\]',
         subject: "English",
         subtopic: "Vocab in Context",
@@ -63,11 +82,11 @@ export default function QCardTemplate({}) {
     const config = {
         loader: { load: ["[tex]/html"] },
         tex: {
-          packages: { "[+]": ["html"] },
-          inlineMath: [["$", "$"]],
-          displayMath: [["$$", "$$"]]
+            packages: { "[+]": ["html"] },
+            inlineMath: [["$", "$"]],
+            displayMath: [["$$", "$$"]]
         }
-      };
+    };
 
     if (isNotepadOpen == false) {
         return (
@@ -77,7 +96,7 @@ export default function QCardTemplate({}) {
                         <div id='qcard-back-button'>
                             <h3><Link to={"/home"}>Exit</Link></h3>
                         </div>
-                        <img src={note} onClick={() => {setisNotepadOpen(true)}}/>
+                        <img src={note} onClick={() => { setisNotepadOpen(true) }} />
                     </div>
                     <div className='qcard-question-head'>
                         <h1>Q.1</h1>
@@ -85,19 +104,19 @@ export default function QCardTemplate({}) {
                         <h3 data-ecard={showEcard}><i>{currQuestion.subtopic}</i></h3>
                         <h3 data-ecard={showEcard} id={'sub-color-' + currQuestion.difficulty}><i>{currQuestion.difficulty}</i></h3>
                     </div>
-                    <div className='qcard-timer-head' style={{"justifyContent": 'flex-start', "gap": '20px'}}>
-                        <img src={show} onClick={() => {setshowTimer(false)}} id="show" data-show={showTimer.toString()}/>
-                        <img src={hide} onClick={() => {setshowTimer(true)}} id="hide" data-show={showTimer.toString()}/>
+                    <div className='qcard-timer-head' style={{ "justifyContent": 'flex-start', "gap": '20px' }}>
+                        <img src={show} onClick={() => { setshowTimer(false) }} id="show" data-show={showTimer.toString()} />
+                        <img src={hide} onClick={() => { setshowTimer(true) }} id="hide" data-show={showTimer.toString()} />
                         <h1 data-show={showTimer.toString()}>01:38</h1>
                     </div>
                 </div>
                 <div className='qcard-top-line'></div>
                 <div className='qcard-top-icons'>
-                    <img src={unflag} id="unflag" data-flag={isFlagged.toString()} onClick={() => {setisFlagged(true)}}/>
-                    <img src={flag} id="flag" data-flag={isFlagged.toString()} onClick={() => {setisFlagged(false)}}/>
-                    <img src={share} id="share"/>
+                    <img src={unflag} id="unflag" data-flag={isFlagged.toString()} onClick={() => { setisFlagged(true) }} />
+                    <img src={flag} id="flag" data-flag={isFlagged.toString()} onClick={() => { setisFlagged(false) }} />
+                    <img src={share} id="share" />
                 </div>
-                <div className='qcard-main-content'>    
+                <div className='qcard-main-content'>
                     <div className='qcard-text'>
                         <div className="latex-h2">
                             {/* https://github.com/fast-reflexes/better-react-mathjax?tab=readme-ov-file */}
@@ -129,22 +148,22 @@ export default function QCardTemplate({}) {
                     </div>
                     <div className='qcard-mid-bar'><div></div></div>
                     <div className='qcard-choices' data-ecard={showEcard}>
-                        <div className='qcard-answer-choice' id="choice1" data-selected={selectedOption} onClick={() => {setselectedOption('1')}}>
+                        <div className='qcard-answer-choice' id="choice1" data-selected={selectedOption} onClick={() => { setselectedOption('1') }}>
                             <div id="qcard-letter"><h2><span>A</span></h2></div>
                             <div className='qcard-choice-cont'><h2>{currQuestion.options[0].text}</h2></div>
                         </div>
 
-                        <div className='qcard-answer-choice' id="choice2" data-selected={selectedOption} onClick={() => {setselectedOption('2')}}>
+                        <div className='qcard-answer-choice' id="choice2" data-selected={selectedOption} onClick={() => { setselectedOption('2') }}>
                             <div id="qcard-letter"><h2><span>B</span></h2></div>
                             <div className='qcard-choice-cont'><h2>{currQuestion.options[1].text}</h2></div>
                         </div>
 
-                        <div className='qcard-answer-choice' id="choice3" data-selected={selectedOption} onClick={() => {setselectedOption('3')}}>
+                        <div className='qcard-answer-choice' id="choice3" data-selected={selectedOption} onClick={() => { setselectedOption('3') }}>
                             <div id="qcard-letter"><h2><span>C</span></h2></div>
                             <div className='qcard-choice-cont'><h2>{currQuestion.options[2].text}</h2></div>
                         </div>
 
-                        <div className='qcard-answer-choice' id="choice4" data-selected={selectedOption} onClick={() => {setselectedOption('4')}}>
+                        <div className='qcard-answer-choice' id="choice4" data-selected={selectedOption} onClick={() => { setselectedOption('4') }}>
                             <div id="qcard-letter"><h2><span>D</span></h2></div>
                             <div className='qcard-choice-cont'><h2>{currQuestion.options[3].text}</h2></div>
                         </div>
@@ -158,19 +177,19 @@ export default function QCardTemplate({}) {
                             <div className='qcard-understand-bar'>
                                 <div></div>
                             </div>
-                            <div className='qcard-understand-check'>  
+                            <div className='qcard-understand-check'>
                                 <div>
-                                    <input type="checkbox" id="e-understood" name="check" checked={checked} onChange={() => {setchecked(!checked)}}/>
+                                    <input type="checkbox" id="e-understood" name="check" checked={checked} onChange={() => { setchecked(!checked) }} />
                                     <h2>I understand this problem</h2>
                                 </div>
-                                
+
                             </div>
                         </div>
 
                     </div>
                 </div>
                 <div className='qcard-bottom-icons'>
-                    <img src={arrow} id="arrow" data-ecard={showEcard} data-show={selectedOption} onClick={() => {setshowEcard(true)}}/>
+                    <img src={arrow} id="arrow" data-ecard={showEcard} data-show={selectedOption} onClick={() => { setshowEcard(true) }} />
                 </div>
             </div>
         )
@@ -179,7 +198,7 @@ export default function QCardTemplate({}) {
             <div className='qcard-bg' data-noteshow={true}>
                 <div className='qcard-left-bar'>
                     <div>
-                        <div id='qcard-back-button' style={{"marginLeft": "20px"}}>
+                        <div id='qcard-back-button' style={{ "marginLeft": "20px" }}>
                             <h3><Link to={"/home"}>Exit</Link></h3>
                         </div>
                     </div>
@@ -194,23 +213,23 @@ export default function QCardTemplate({}) {
                         </div>
                     </div>
                     <div className='qcard-left-info qcard-timer-thing'>
-                        <img src={show} onClick={() => {setshowTimer(false)}} id="show" data-show={showTimer.toString()}/>
-                        <img src={hide} onClick={() => {setshowTimer(true)}} id="hide" data-show={showTimer.toString()}/>
+                        <img src={show} onClick={() => { setshowTimer(false) }} id="show" data-show={showTimer.toString()} />
+                        <img src={hide} onClick={() => { setshowTimer(true) }} id="hide" data-show={showTimer.toString()} />
                         <h1 data-show={showTimer.toString()}>01:38</h1>
                     </div>
                     <div className='qcard-notepad-cont'>
-                        <h4 onClick={() => {setisNotepadOpen(false)}}><i>close</i></h4>
-                        <TheNotepad noteText={noteText} setnoteText={setnoteText}/>
+                        <h4 onClick={() => { setisNotepadOpen(false) }}><i>close</i></h4>
+                        <TheNotepad noteText={noteText} setnoteText={setnoteText} />
                     </div>
                 </div>
                 <div className='qcard-vert-line'></div>
                 <div>
                     <div className='qcard-top-icons'>
-                        <img src={unflag} id="unflag" data-flag={isFlagged.toString()} onClick={() => {setisFlagged(true)}}/>
-                        <img src={flag} id="flag" data-flag={isFlagged.toString()} onClick={() => {setisFlagged(false)}}/>
-                        <img src={share} id="share"/>
+                        <img src={unflag} id="unflag" data-flag={isFlagged.toString()} onClick={() => { setisFlagged(true) }} />
+                        <img src={flag} id="flag" data-flag={isFlagged.toString()} onClick={() => { setisFlagged(false) }} />
+                        <img src={share} id="share" />
                     </div>
-                    <div className='qcard-main-content' data-noteshow={true}> 
+                    <div className='qcard-main-content' data-noteshow={true}>
                         <div className='qcard-text' data-noteshow={true}>
                             {/*
                             <h2>{currQuestion.text}</h2>
@@ -245,22 +264,22 @@ export default function QCardTemplate({}) {
                         </div>
                         <div className='qcard-mid-bar'><div></div></div>
                         <div className='qcard-choices' data-noteshow={true} data-ecard={showEcard}>
-                            <div className='qcard-answer-choice' id="choice1" data-selected={selectedOption} onClick={() => {setselectedOption('1')}}>
+                            <div className='qcard-answer-choice' id="choice1" data-selected={selectedOption} onClick={() => { setselectedOption('1') }}>
                                 <div id="qcard-letter"><h2><span>A</span></h2></div>
                                 <div className='qcard-choice-cont'><h2>{currQuestion.options[0].text}</h2></div>
                             </div>
 
-                            <div className='qcard-answer-choice' id="choice2" data-selected={selectedOption} onClick={() => {setselectedOption('2')}}>
+                            <div className='qcard-answer-choice' id="choice2" data-selected={selectedOption} onClick={() => { setselectedOption('2') }}>
                                 <div id="qcard-letter"><h2><span>B</span></h2></div>
                                 <div className='qcard-choice-cont'><h2>{currQuestion.options[1].text}</h2></div>
                             </div>
 
-                            <div className='qcard-answer-choice' id="choice3" data-selected={selectedOption} onClick={() => {setselectedOption('3')}}>
+                            <div className='qcard-answer-choice' id="choice3" data-selected={selectedOption} onClick={() => { setselectedOption('3') }}>
                                 <div id="qcard-letter"><h2><span>C</span></h2></div>
                                 <div className='qcard-choice-cont'><h2>{currQuestion.options[2].text}</h2></div>
                             </div>
 
-                            <div className='qcard-answer-choice' id="choice4" data-selected={selectedOption} onClick={() => {setselectedOption('4')}}>
+                            <div className='qcard-answer-choice' id="choice4" data-selected={selectedOption} onClick={() => { setselectedOption('4') }}>
                                 <div id="qcard-letter"><h2><span>D</span></h2></div>
                                 <div className='qcard-choice-cont'><h2>{currQuestion.options[3].text}</h2></div>
                             </div>
@@ -274,17 +293,17 @@ export default function QCardTemplate({}) {
                                 <div className='qcard-understand-bar'>
                                     <div></div>
                                 </div>
-                                <div className='qcard-understand-check'>  
+                                <div className='qcard-understand-check'>
                                     <div>
-                                        <input type="checkbox" id="e-understood" name="check" checked={checked} onChange={() => {setchecked(!checked)}}/>
+                                        <input type="checkbox" id="e-understood" name="check" checked={checked} onChange={() => { setchecked(!checked) }} />
                                         <h2>I understand this problem</h2>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
                         <div className='qcard-bottom-icons' data-noteshow={true}>
-                            <img src={arrow} id="arrow" data-ecard={showEcard} data-show={selectedOption} onClick={() => {setshowEcard(true)}}/>
+                            <img src={arrow} id="arrow" data-ecard={showEcard} data-show={selectedOption} onClick={() => { setshowEcard(true) }} />
                         </div>
                     </div>
                 </div>
