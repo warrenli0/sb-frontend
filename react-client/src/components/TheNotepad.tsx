@@ -36,9 +36,8 @@ function Content({ version, noteText, setnoteText }: any) {
     useEffect(() => {
         if (calculatorRef.current) {
 
-            const calculator = window.Desmos.GraphingCalculator(calculatorRef.current, { "keypad": false, "border": false });
-            //const elt = document.getElementById('calculator');
-            //const calculator = Desmos.GraphingCalculator(elt);
+            //const calculator = window.Desmos.GraphingCalculator(calculatorRef.current, { "keypad": false, "border": false });
+            
         }
     }, []);
 

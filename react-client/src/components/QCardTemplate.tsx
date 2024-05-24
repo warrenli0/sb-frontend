@@ -44,49 +44,42 @@ export default function QCardTemplate({ }) {
         fetchQuestion();
     }, [id]);
 
+
     const [currQuestion, setcurrQuestion] = useState({
-        id: 'example',
-        format: 1,
-        text: `What is the median of the \\(\\textit{seven}\\) data values below?
+
+        _id: 'example',
+        type: 'English',
+        title: '',
+        author: '',
+        category: 'Vocab in Context',
+        difficulty: 'Hard',
+        problemStatement: `What is the median of the \\(\\textit{seven}\\) data values below?
         \\[10,\\;13,\\;14,\\;14,\\;12,\\;13,\\;14\\]`,
-        problem: "",
-        //text: "Penny had spent 5 hours prescribing meditation as a remedy to his friend's insomnia, and had often propounded spirituality as the cure to common predicaments.",
-        //problem: "As used in the text, what does the word \"propounded\" most nearly mean?",
-
+        has_img: false,
+        img_link: '',
+        passage: '',
         explanation: 'The answer is \\(\\textbf{C}\\). If you order the numbers, you get: \\[10,\\;12,\\;13,\\;13,\\;14,\\;14,\\;14\\] Since there are an odd number of elements, the median is simply the middle number of the ordered set. Thus, the median is 13. \\[10,\\;12,\\;13,\\;\\fbox{13},\\;14,\\;14,\\;14\\]',
-        subject: "English",
-        subtopic: "Vocab in Context",
-        difficulty: "Hard",
-        options: [{
-            id: 0,
-            text: '10',
-            isCorrect: false,
-        },
-        {
-            id: 1,
-            text: '12',
-            isCorrect: false,
-        },
-        {
-            id: 2,
-            text: '13',
-            isCorrect: true,
-        },
-        {
-            id: 3,
-            text: '14',
-            isCorrect: false,
-        },]
+        answerChoices: [{
+                id: 0,
+                text: '10',
+                isCorrect: false,
+            },
+            {
+                id: 1,
+                text: '12',
+                isCorrect: false,
+            },
+            {
+                id: 2,
+                text: '13',
+                isCorrect: true,
+            },
+            {
+                id: 3,
+                text: '14',
+                isCorrect: false,
+            },]
     })
-
-    const config = {
-        loader: { load: ["[tex]/html"] },
-        tex: {
-            packages: { "[+]": ["html"] },
-            inlineMath: [["$", "$"]],
-            displayMath: [["$$", "$$"]]
-        }
-    };
 
     if (isNotepadOpen == false) {
         return (
@@ -100,8 +93,8 @@ export default function QCardTemplate({ }) {
                     </div>
                     <div className='qcard-question-head'>
                         <h1>Q.1</h1>
-                        <h3><i>{currQuestion.subject}</i></h3>
-                        <h3 data-ecard={showEcard}><i>{currQuestion.subtopic}</i></h3>
+                        <h3><i>{currQuestion.type}</i></h3>
+                        <h3 data-ecard={showEcard}><i>{currQuestion.category}</i></h3>
                         <h3 data-ecard={showEcard} id={'sub-color-' + currQuestion.difficulty}><i>{currQuestion.difficulty}</i></h3>
                     </div>
                     <div className='qcard-timer-head' style={{ "justifyContent": 'flex-start', "gap": '20px' }}>
@@ -122,56 +115,62 @@ export default function QCardTemplate({ }) {
                             {/* https://github.com/fast-reflexes/better-react-mathjax?tab=readme-ov-file */}
                             <MathJaxContext version={2}>
                                 <MathJax hideUntilTypeset={"first"}>
-                                    {currQuestion.text}
+                                    {currQuestion.problemStatement}
                                 </MathJax>
                             </MathJaxContext>
                         </div>
-                        <div className='qcard-answer-choice' id="choice1" data-correct={currQuestion.options[0].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
+                        <div className='qcard-answer-choice' id="choice1" data-correct={currQuestion.answerChoices[0].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                             <div id="qcard-letter"><h2><span>A</span></h2></div>
-                            <div className='qcard-choice-cont'><h2>{currQuestion.options[0].text}</h2></div>
+                            <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[0].text}</h2></div>
                         </div>
 
-                        <div className='qcard-answer-choice' id="choice2" data-correct={currQuestion.options[1].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
+                        <div className='qcard-answer-choice' id="choice2" data-correct={currQuestion.answerChoices[1].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                             <div id="qcard-letter"><h2><span>B</span></h2></div>
-                            <div className='qcard-choice-cont'><h2>{currQuestion.options[1].text}</h2></div>
+                            <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[1].text}</h2></div>
                         </div>
 
-                        <div className='qcard-answer-choice' id="choice3" data-correct={currQuestion.options[2].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
+                        <div className='qcard-answer-choice' id="choice3" data-correct={currQuestion.answerChoices[2].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                             <div id="qcard-letter"><h2><span>C</span></h2></div>
-                            <div className='qcard-choice-cont'><h2>{currQuestion.options[2].text}</h2></div>
+                            <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[2].text}</h2></div>
                         </div>
 
-                        <div className='qcard-answer-choice' id="choice4" data-correct={currQuestion.options[3].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
+                        <div className='qcard-answer-choice' id="choice4" data-correct={currQuestion.answerChoices[3].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                             <div id="qcard-letter"><h2><span>D</span></h2></div>
-                            <div className='qcard-choice-cont'><h2>{currQuestion.options[3].text}</h2></div>
+                            <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[3].text}</h2></div>
                         </div>
                     </div>
                     <div className='qcard-mid-bar'><div></div></div>
                     <div className='qcard-choices' data-ecard={showEcard}>
                         <div className='qcard-answer-choice' id="choice1" data-selected={selectedOption} onClick={() => { setselectedOption('1') }}>
                             <div id="qcard-letter"><h2><span>A</span></h2></div>
-                            <div className='qcard-choice-cont'><h2>{currQuestion.options[0].text}</h2></div>
+                            <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[0].text}</h2></div>
                         </div>
 
                         <div className='qcard-answer-choice' id="choice2" data-selected={selectedOption} onClick={() => { setselectedOption('2') }}>
                             <div id="qcard-letter"><h2><span>B</span></h2></div>
-                            <div className='qcard-choice-cont'><h2>{currQuestion.options[1].text}</h2></div>
+                            <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[1].text}</h2></div>
                         </div>
 
                         <div className='qcard-answer-choice' id="choice3" data-selected={selectedOption} onClick={() => { setselectedOption('3') }}>
                             <div id="qcard-letter"><h2><span>C</span></h2></div>
-                            <div className='qcard-choice-cont'><h2>{currQuestion.options[2].text}</h2></div>
+                            <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[2].text}</h2></div>
                         </div>
 
                         <div className='qcard-answer-choice' id="choice4" data-selected={selectedOption} onClick={() => { setselectedOption('4') }}>
                             <div id="qcard-letter"><h2><span>D</span></h2></div>
-                            <div className='qcard-choice-cont'><h2>{currQuestion.options[3].text}</h2></div>
+                            <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[3].text}</h2></div>
                         </div>
                     </div>
                     <div className='qcard-explanation' data-ecard={showEcard}>
                         <div className='qcard-explanation-meta'>
                             <h2><b>Explanation</b></h2>
-                            <h2 id="qcard-explainme" data-ecard={showEcard}>{currQuestion.explanation}</h2>
+                            <div className="latex-h2">
+                                    <MathJaxContext version={2}>
+                                        <MathJax hideUntilTypeset={"first"}>
+                                            {currQuestion.explanation}
+                                        </MathJax>
+                                    </MathJaxContext>
+                                </div>
                         </div>
                         <div className='qcard-understandme'>
                             <div className='qcard-understand-bar'>
@@ -205,10 +204,10 @@ export default function QCardTemplate({ }) {
                     <div className='qcard-left-cont'>
                         <div className='qcard-left-info'>
                             <h1>Q.1</h1>
-                            <h3><i>Writing</i></h3>
+                            <h3><i>{currQuestion.type}</i></h3>
                         </div>
                         <div className='qcard-left-info' data-ecard={showEcard}>
-                            <h3 data-ecard={showEcard}><i>{currQuestion.subtopic}</i></h3>
+                            <h3 data-ecard={showEcard}><i>{currQuestion.category}</i></h3>
                             <h3 data-ecard={showEcard} id={'sub-color-' + currQuestion.difficulty}><i>{currQuestion.difficulty}</i></h3>
                         </div>
                     </div>
@@ -233,61 +232,68 @@ export default function QCardTemplate({ }) {
                         <div className='qcard-text' data-noteshow={true}>
                             {/*
                             <h2>{currQuestion.text}</h2>
-        <h2>{currQuestion.problem}</h2>*/}
+        <                   h2>{currQuestion.problem}</h2>*/}
                             <div className="latex-h2">
                                 {/* https://github.com/fast-reflexes/better-react-mathjax?tab=readme-ov-file */}
                                 <MathJaxContext version={2}>
                                     <MathJax hideUntilTypeset={"first"}>
-                                        {currQuestion.text}
+                                        {currQuestion.problemStatement}
                                     </MathJax>
                                 </MathJaxContext>
                             </div>
-                            <div className='qcard-answer-choice' id="choice1" data-correct={currQuestion.options[0].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
+                            <div className='qcard-answer-choice' id="choice1" data-correct={currQuestion.answerChoices[0].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                                 <div id="qcard-letter"><h2><span>A</span></h2></div>
-                                <div className='qcard-choice-cont'><h2>{currQuestion.options[0].text}</h2></div>
+                                <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[0].text}</h2></div>
                             </div>
 
-                            <div className='qcard-answer-choice' id="choice2" data-correct={currQuestion.options[1].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
+                            <div className='qcard-answer-choice' id="choice2" data-correct={currQuestion.answerChoices[1].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                                 <div id="qcard-letter"><h2><span>B</span></h2></div>
-                                <div className='qcard-choice-cont'><h2>{currQuestion.options[1].text}</h2></div>
+                                <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[1].text}</h2></div>
                             </div>
 
-                            <div className='qcard-answer-choice' id="choice3" data-correct={currQuestion.options[2].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
+                            <div className='qcard-answer-choice' id="choice3" data-correct={currQuestion.answerChoices[2].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                                 <div id="qcard-letter"><h2><span>C</span></h2></div>
-                                <div className='qcard-choice-cont'><h2>{currQuestion.options[2].text}</h2></div>
+                                <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[2].text}</h2></div>
                             </div>
 
-                            <div className='qcard-answer-choice' id="choice4" data-correct={currQuestion.options[3].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
+                            <div className='qcard-answer-choice' id="choice4" data-correct={currQuestion.answerChoices[3].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                                 <div id="qcard-letter"><h2><span>D</span></h2></div>
-                                <div className='qcard-choice-cont'><h2>{currQuestion.options[3].text}</h2></div>
+                                <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[3].text}</h2></div>
                             </div>
                         </div>
                         <div className='qcard-mid-bar'><div></div></div>
                         <div className='qcard-choices' data-noteshow={true} data-ecard={showEcard}>
                             <div className='qcard-answer-choice' id="choice1" data-selected={selectedOption} onClick={() => { setselectedOption('1') }}>
                                 <div id="qcard-letter"><h2><span>A</span></h2></div>
-                                <div className='qcard-choice-cont'><h2>{currQuestion.options[0].text}</h2></div>
+                                <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[0].text}</h2></div>
                             </div>
 
                             <div className='qcard-answer-choice' id="choice2" data-selected={selectedOption} onClick={() => { setselectedOption('2') }}>
                                 <div id="qcard-letter"><h2><span>B</span></h2></div>
-                                <div className='qcard-choice-cont'><h2>{currQuestion.options[1].text}</h2></div>
+                                <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[1].text}</h2></div>
                             </div>
 
                             <div className='qcard-answer-choice' id="choice3" data-selected={selectedOption} onClick={() => { setselectedOption('3') }}>
                                 <div id="qcard-letter"><h2><span>C</span></h2></div>
-                                <div className='qcard-choice-cont'><h2>{currQuestion.options[2].text}</h2></div>
+                                <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[2].text}</h2></div>
                             </div>
 
                             <div className='qcard-answer-choice' id="choice4" data-selected={selectedOption} onClick={() => { setselectedOption('4') }}>
                                 <div id="qcard-letter"><h2><span>D</span></h2></div>
-                                <div className='qcard-choice-cont'><h2>{currQuestion.options[3].text}</h2></div>
+                                <div className='qcard-choice-cont'><h2>{currQuestion.answerChoices[3].text}</h2></div>
                             </div>
                         </div>
                         <div className='qcard-explanation' data-ecard={showEcard} data-noteshow={true}>
                             <div className='qcard-explanation-meta'>
                                 <h2><b>Explanation</b></h2>
-                                <h2 id="qcard-explainme" data-ecard={showEcard}>{currQuestion.explanation}</h2>
+                                <div className="latex-h2">
+                                    {/* https://github.com/fast-reflexes/better-react-mathjax?tab=readme-ov-file */}
+                                    <MathJaxContext version={2}>
+                                        <MathJax hideUntilTypeset={"first"}>
+                                            {currQuestion.explanation}
+                                        </MathJax>
+                                    </MathJaxContext>
+                                </div>
                             </div>
                             <div className='qcard-understandme'>
                                 <div className='qcard-understand-bar'>
