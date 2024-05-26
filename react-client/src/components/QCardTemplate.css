@@ -1,7 +1,33 @@
+.input-thing {
+    width: 50vw;
+    height: 180dvh;
+    position: absolute;
+    bottom: -200dvh;
+    background-color: rgb(199, 199, 255);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+.input-thing select {
+    width: 30%;
+}
+.input-thing input {
+    width: 60%;
+}
+.input-thing textarea {
+    height: 100px;
+    padding: 10px;
+}
+.input-check-thing {
+    display: flex;
+    background-color: #58FF3D;
+}
+
+
 .qcard-bg {
     width: 100vw;
     height: 100dvh;
-    position: fixed;
+    position: relative;
 }
 .qcard-bg[data-noteshow='true'] {
     display: grid;

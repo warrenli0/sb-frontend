@@ -81,9 +81,59 @@ export default function QCardTemplate({ }) {
             },]
     })
 
+    const [tempLatex, setTempLatex] = useState<string>('');
+    const [prob, setProb] = useState<string>('What is the median of the \\(\\textit{seven}\\) data values below? \\[10,\\;13,\\;14,\\;14,\\;12,\\;13,\\;14\\]');
+    function InputComponent() {
+        return (
+            <div className='input-thing'>
+                <h1>enter shit</h1>
+
+                <label htmlFor="input-type">type: </label>
+                <select name="type" id="input-type">
+                    <option value="English">English</option>
+                    <option value="Math">Math</option>
+                    <option value="Reading">Reading</option>
+                    <option value="Science">Science</option>
+                </select>
+                <br/>
+                <label htmlFor="input-subtopic">subtopic: </label>
+                <select name="type" id="input-subtopic">
+                    <option value="English">English</option>
+                    <option value="Math">Math</option>
+                    <option value="Reading">Reading</option>
+                    <option value="Science">Science</option>
+                </select>
+                <br/>
+                <label htmlFor="input-difficulty">difficulty: </label>
+                <select name="type" id="input-difficulty">
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+                <br/>
+                <p>passage</p>
+                <textarea placeholder='should be empty if no passage'/>
+                <br/>
+                <p>problem</p>
+                <textarea value={prob} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => { setProb(event.target.value) }}/>
+                <br/>
+                <div id='input-check-thing' style={{"display": 'flex'}}>
+                    <p>Choice 1</p>
+                    <input type='checkbox' style={{"width": '40px'}}/>
+                </div>
+                <textarea/>
+                
+                <br/>
+                <p>explanation</p>
+                <textarea placeholder=''/>
+            </div>
+        )
+    }
+
     if (isNotepadOpen == false) {
         return (
             <div className='qcard-bg'>
+                <InputComponent />
                 <div className='qcard-top-bar'>
                     <div className='qcard-exit-note'>
                         <div id='qcard-back-button'>
@@ -195,6 +245,8 @@ export default function QCardTemplate({ }) {
     } else {
         return (
             <div className='qcard-bg' data-noteshow={true}>
+                <MathJaxContext version={2}>
+                <InputComponent />
                 <div className='qcard-left-bar'>
                     <div>
                         <div id='qcard-back-button' style={{ "marginLeft": "20px" }}>
@@ -235,11 +287,11 @@ export default function QCardTemplate({ }) {
         <                   h2>{currQuestion.problem}</h2>*/}
                             <div className="latex-h2">
                                 {/* https://github.com/fast-reflexes/better-react-mathjax?tab=readme-ov-file */}
-                                <MathJaxContext version={2}>
+                                
                                     <MathJax hideUntilTypeset={"first"}>
-                                        {currQuestion.problemStatement}
+                                        {prob}
                                     </MathJax>
-                                </MathJaxContext>
+                                
                             </div>
                             <div className='qcard-answer-choice' id="choice1" data-correct={currQuestion.answerChoices[0].isCorrect} data-ecard={showEcard} data-selected={selectedOption}>
                                 <div id="qcard-letter"><h2><span>A</span></h2></div>
@@ -288,11 +340,6 @@ export default function QCardTemplate({ }) {
                                 <h2><b>Explanation</b></h2>
                                 <div className="latex-h2">
                                     {/* https://github.com/fast-reflexes/better-react-mathjax?tab=readme-ov-file */}
-                                    <MathJaxContext version={2}>
-                                        <MathJax hideUntilTypeset={"first"}>
-                                            {currQuestion.explanation}
-                                        </MathJax>
-                                    </MathJaxContext>
                                 </div>
                             </div>
                             <div className='qcard-understandme'>
@@ -313,6 +360,7 @@ export default function QCardTemplate({ }) {
                         </div>
                     </div>
                 </div>
+                </MathJaxContext>
             </div>
         )
     }
