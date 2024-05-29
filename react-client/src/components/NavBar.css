@@ -10,7 +10,7 @@
 }
 .top-bar h1 {
     cursor: pointer;
-    font-weight: 800;
+    font-weight: 700;
 }
 .top-bar a {
     text-decoration: none;
@@ -22,7 +22,7 @@
     gap: 40px;
 }
 .top-bar-select h1 {
-    font-weight: 700;
+    font-weight: 500;
 }
 .top-bar-select h1[data-under='2'][data-link='2'] {
     text-decoration: underline;

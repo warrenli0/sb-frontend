@@ -1,6 +1,7 @@
 .home-main {
     height: 170dvh;
-    background: linear-gradient(#08CAF7, #3483F9);
+    /*background: linear-gradient(#08CAF7, #3483F9);*/
+    background-color: #D0E8FF;
     position: relative;
     padding: 3% 7%;
     display: grid;
@@ -18,9 +19,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    -webkit-box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
-    -moz-box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
-    box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 8px 0px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 8px 0px 0px rgba(0,0,0,0.4);
+    /* 6px 6px 4px 2px rgba(0,0,0,0.4); */
+    box-shadow: 0px 8px 0px 0px rgba(0,0,0,0.4);
 }
 .home-card-head {
     display: flex;
@@ -39,7 +41,6 @@
     gap: 15px;
 }
 .head-info h1 {
-    font-weight: 800;
 }
 .head-info img{
     height: 30px;
@@ -115,9 +116,9 @@
     color: #040033;
     display: flex;
     flex-direction: column;
-    -webkit-box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
-    -moz-box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
-    box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 8px 0px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 8px 0px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 8px 0px 0px rgba(0,0,0,0.4);
     color: white;
 }
 .pet-card-meta {
@@ -172,7 +173,7 @@
     color: #040033;
     -webkit-box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
     -moz-box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
-    box-shadow: 6px 6px 4px 2px rgba(0,0,0,0.4);
+    box-shadow: 0px 8px 0px 0px rgba(0,0,0,0.4);
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: minmax(0, 15%) minmax(0, 85%);
@@ -184,7 +185,6 @@
     justify-content: space-between;
 }
 .module-cont-head h1 {
-    font-weight: 800;
 }
 .module-cont-head div{
     display: flex;
