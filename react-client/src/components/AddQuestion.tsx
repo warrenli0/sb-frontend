@@ -11,6 +11,7 @@ const AddQuestionComponent = () => {
         title: '',
         author: '',
         problemStatement: '',
+        question: '',
         category: '',
         difficulty: '',
         answerChoices: Array(4).fill({ text: '', isCorrect: false }),

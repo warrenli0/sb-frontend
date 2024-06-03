@@ -8,7 +8,6 @@ import face from '../images/facesvg.svg'
 import whi from '../images/white_info.png'
 
 import { useState, useEffect } from "react";
-import { Textfit } from 'react-textfit';
 
 export default function SignIn({ }) {
     const [loginCount, setloginCount] = useState(0);
@@ -89,9 +88,9 @@ export default function SignIn({ }) {
         return (
             <div className='login-score' data-exit={+loginCount}>
                 <div className='login-score-head'>
-                    <Textfit mode="single" style={{ height: '100%', display: 'flex', alignItems: "center", justifyContent: "center" }} max={60}>
+                    {/* <Textfit mode="single" style={{ height: '100%', display: 'flex', alignItems: "center", justifyContent: "center" }} max={60}>
                         {"Some Info..."}
-                    </Textfit>
+                    </Textfit> */}
                 </div>
                 <div className='login-score-bar'>
                     <div className='login-score-bar-line'></div>

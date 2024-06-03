@@ -3,7 +3,56 @@ import { Module, Question } from '../@types/common';
 
 const useModules = () => {
     const baseUrl = 'https://sbapidev.com/api/modules';
-    const addQuestionUrl = 'https://sbapidev.com/api/add-modules';
+    const addModuleUrl = 'https://sbapidev.com/api/add-module';
+
+    const [modules, setModules] = useState<Module[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchModules = async () => {
+        try {
+            const response = await fetch(baseUrl);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setModules(data);
+            setLoading(false);
+
+            console.log(data)
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+            setError('Failed to fetch modules');
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchModules();
+    }, []);
+
+    const getCategoriesWithTopics = () => {
+        const categories: { [key: string]: string[] } = {};
+
+        modules.forEach(module => {
+            if (!categories[module.category]) {
+                categories[module.category] = [];
+            }
+            if (!categories[module.category].includes(module.topic)) {
+                categories[module.category].push(module.topic);
+            }
+        });
+
+        return categories;
+    };
+
+    const getModulesByTopic = (topic: string) => {
+        return modules.filter(module => module.topic === topic);
+    };
+
+    const getModuleById = (id: string) => {
+        return modules.find(module => module._id === id);
+    };
 
     const getModules = async () => {
         try {
@@ -29,26 +78,21 @@ const useModules = () => {
         }
     };
 
-    const addModule = async (questionData: Question, type: String) => {
+    const addModule = async (moduleData: Module) => {
         try {
-            const response = await fetch(`${addQuestionUrl}/${type}`, {
+            const response = await fetch(`${addModuleUrl}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    id: questionData._id,
-                    type: type,
-                    title: questionData.title,
-                    author: questionData.author,
-                    category: questionData.category,
-                    difficulty: questionData.difficulty,
-                    problemStatement: questionData.problemStatement,
-                    answerChoices: questionData.answerChoices,
-                    has_img: questionData.has_img,
-                    img_link: questionData.img_link,
-                    passage: questionData.passage,
-                    explanation: questionData.explanation,
+                    id: moduleData._id,
+                    title: moduleData.title,
+                    category: moduleData.category,
+                    topic: moduleData.topic,
+                    estimatedTime: moduleData.estimatedTime,
+                    description: moduleData.description,
+                    questions: moduleData.questions,
                 }),
             });
             if (!response.ok) {
@@ -61,7 +105,7 @@ const useModules = () => {
     };
 
 
-    return { getModules, getModule, addModule };
+    return { modules, getCategoriesWithTopics, getModulesByTopic, getModuleById, getModules, getModule, addModule, loading, error };
 };
 
 export default useModules;

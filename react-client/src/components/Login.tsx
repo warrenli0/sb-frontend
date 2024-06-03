@@ -38,7 +38,7 @@ const LoginComponent: React.FC = () => {
     const handleCredentialResponse = async (response: any) => {
         const id_token = response.credential;
         try {
-            const res = await fetch('http://localhost:5000/auth/google', {
+            const res = await fetch('https://sbapidev.com/auth/google', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const LoginComponent: React.FC = () => {
             console.log(user);
             setCurrentUser(user);
 
-            navigate('/');
+            navigate('/home');
         } catch (error) {
             console.error('An error occurred:', error);
         }

@@ -6,17 +6,16 @@ import NavBar from './NavBar';
 
 
 import { useState, useEffect } from "react";
-import { Textfit } from 'react-textfit';
 import { Outlet, Link } from "react-router-dom";
 
-export default function Modules({}) {
+export default function Modules({ }) {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, []);
-      
+
     return (
         <div className=''>
-            <NavBar under="2"/>
+            <NavBar under="2" />
             <div className='modules-cont'>
                 <div className='module-header'>
                     <div className='module-types'>
@@ -26,7 +25,7 @@ export default function Modules({}) {
                         <h1>All</h1>
                     </div>
                     <div className='module-head-filter'>
-                        <h2>Filter by:</h2> 
+                        <h2>Filter by:</h2>
                         <select id="module-select">
                             <option value="Status">Status</option>
                         </select>
@@ -40,13 +39,13 @@ export default function Modules({}) {
                             <h2>Mastered: 2</h2>
                         </div>
                         <div>
-                            <input placeholder='\ Search'/>
+                            <input placeholder='\ Search' />
                         </div>
                     </div>
                     <div className='module-list-cont'>
                         <div className='modulelist-head'>
                             <h2 id="mListTitle">Algebra</h2>
-                            <h2 style={{fontWeight: '500', paddingRight: '10px'}}>Completed 0 of 5</h2>
+                            <h2 style={{ fontWeight: '500', paddingRight: '10px' }}>Completed 0 of 5</h2>
                         </div>
                         <div className='module-list modules-page-list'>
                             <div className='module-card' id="module-bg1">
@@ -95,7 +94,7 @@ export default function Modules({}) {
                     <div className='module-list-cont'>
                         <div className='modulelist-head'>
                             <h2 id="mListTitle">Advanced Math</h2>
-                            <h2 style={{fontWeight: '500', paddingRight: '10px'}}>Completed 0 of 4</h2>
+                            <h2 style={{ fontWeight: '500', paddingRight: '10px' }}>Completed 0 of 4</h2>
                         </div>
                         <div className='module-list modules-page-list'>
                             <div className='module-card' id="module-bg4">
@@ -146,7 +145,7 @@ export default function Modules({}) {
                     <div className='module-list-cont'>
                         <div className='modulelist-head'>
                             <h2 id="mListTitle">Problem Solving & Data Analysis</h2>
-                            <h2 style={{fontWeight: '500', paddingRight: '10px'}}>Completed 0 of 4</h2>
+                            <h2 style={{ fontWeight: '500', paddingRight: '10px' }}>Completed 0 of 4</h2>
                         </div>
                         <div className='module-list modules-page-list'>
                             <div className='module-card' id="module-bg2">

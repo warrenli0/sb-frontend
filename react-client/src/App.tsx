@@ -4,6 +4,7 @@ import { useAuth } from './hooks/useAuth';
 import HomeComponent from './components/Home';
 import LoginComponent from './components/Login';
 import AddQuestionComponent from './components/AddQuestion';
+import AddModuleComponent from './components/AddModule';
 import QuestionListComponent from './components/QuestionList';
 import QuestionDetailComponent from './components/QuestionDetail';
 import UserProfileComponent from './components/UserProfile';
@@ -16,8 +17,10 @@ import Profile from './components/Profile';
 import HomePage from './components/HomePage';
 import Modules from './components/Modules';
 import ModuleTemplate from './components/ModuleTemplate';
+import ModuleStart from './components/ModuleStart';
 import QCardTemplate from './components/QCardTemplate';
 import LatexComponent from './components/LatexComponent';
+import ModulesPage from './components/ModulesPage';
 
 const App = () => {
   const { currentUser, logout } = useAuth();
@@ -29,6 +32,7 @@ const App = () => {
         <Route path="/" element={<HomeComponent />} />
         <Route path="/login" element={<LoginComponent />} />
         <Route path="/add-question" element={<AddQuestionComponent />} />
+        <Route path="/add-module" element={<AddModuleComponent />} />
         <Route path="/questions" element={<QuestionListComponent />} />
         <Route path="/question/:id" element={<QuestionDetailComponent />} />
         <Route path="/old-profile" element={<UserProfileComponent />} />
@@ -39,7 +43,10 @@ const App = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/modules" element={<Modules />} />
+        <Route path="/modules" element={<ModulesPage />} />
+        <Route path="/modules/:id" element={<ModuleTemplate />} />
+        <Route path="/modules/:id/start" element={<ModuleStart />} />
+        <Route path="/old-modules" element={<Modules />} />
         <Route path="/modules/example-module" element={<ModuleTemplate />} />
         <Route path="/example-question" element={<QCardTemplate />} />
         <Route path="/latex-test" element={<LatexComponent />} />
