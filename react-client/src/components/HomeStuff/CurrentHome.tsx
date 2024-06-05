@@ -5,59 +5,19 @@ import { Question } from '../../@types/common';
 import { useAuth } from '../../hooks/useAuth';
 
 import YourModuleList from './YourModuleList';
+import YourQuestionList from './YourQuestionList';
 import '../Home.css' // Change later
 import petBeach from './pet_images/pet-beach.png';
 import cocoTemp from './pet_images/coco-placeholder.png';
+import './CurrentHome.css' // needed for circle
 
 const CurrentHome = () => {
-    //const { getQuestions, getQuestionsWithCompletionStatus } = useQuestionService();
-    const [questions, setQuestions] = useState<Question[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const [filteredQuestions, setFilteredQuestions] = useState<Question[]>([]);
-    const categories = ["Reading", "Writing", "Math"];
-    const difficulties = ["Easy", "Medium", "Hard"]; // Replace with real logic later
-    const navigate = useNavigate();
-    //const { currentUser } = useAuth();
-    const pageSize = 10;
 
-    /* pet stuff */
+    /* goal + pet stuff */
     const [petLevel, setpetLevel] = useState(7);
-
-    /*
-    useEffect(() => {
-        const fetchQuestions = async () => {
-            const data = await getQuestionsWithCompletionStatus(currentUser?._id, currentPage, pageSize);
-            if (data) {
-                setQuestions(data.questions);
-                setFilteredQuestions(data.questions);
-                setTotalPages(data.totalPages);
-            }
-            console.log(data);
-        };
-
-        fetchQuestions();
-    }, [currentPage]);*/
-
-    const onCategoryChange = (e: any) => {
-        const category = e.target.value;
-        // Filter questions based on the selected category
-        // Update filteredQuestions state
-    };
-
-    const onDifficultyChange = (e: any) => {
-        const difficulty = e.target.value;
-        // Filter questions based on the selected difficulty
-        // Update filteredQuestions state
-    };
-
-    const handlePageChange = (newPage: number) => {
-        setCurrentPage(newPage);
-    };
-
-    const handleQuestionClick = (questionId: string) => {
-        navigate(`/question/${questionId}`);
-    };
+    const [progress, setProgress] = useState(75); //unused
+    const [probSolvedToday, setprobSolvedToday] = useState(12);
+    const [goalProblems, setgoalProblems] = useState(21);
 
     /*
         <div className="container mx-auto flex justify-between items-center">
@@ -73,7 +33,7 @@ const CurrentHome = () => {
                         <button className="text-[#040033] focus:outline-none">Menu</button>
                     </div>
                 </div>
-    */
+    */  
 
     return (
         <div>
@@ -124,7 +84,24 @@ const CurrentHome = () => {
                             <h1 className=''>Daily Goal</h1>
                             <h1 className='text-[#F23818] text-2xl font-semibold'>7 🔥</h1>
                         </div>
-                        <div className='h-[75%] px-7 flex flex-col justify-evenly'>
+                        <div className='h-[75%] w-full px-7 flex flex-col justify-evenly relative'>
+                            <div className='w-full flex items-center justify-evenly'>
+                                <div className='w-[40%] flex justify-center'>
+                                    <div className='w-[100px] h-[100px] rounded-[50%] flex items-center justify-center'
+                                        style={{
+                                        background: `radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(#FFCA41 ${Math.trunc((probSolvedToday/goalProblems)*100)}%, #FFF2CB 0)`
+                                        }}
+                                    >
+                                        <h1 className='text-3xl text-[#FFCA41] font-bold'>{Math.trunc((probSolvedToday/goalProblems)*100)}%</h1>
+                                    </div>
+                                </div>
+                                <div className='w-[60%]'>
+                                    <h2 className='text-xl text-center'>{probSolvedToday}/{goalProblems} Problems Completed</h2>
+                                </div>
+                            </div>
+                            <div className='flex items-center justify-center'>
+                                <h4 className='font-light'>“studying hard or hardly studying?”</h4>
+                            </div>
                         </div>
                     </div>
 
@@ -137,6 +114,7 @@ const CurrentHome = () => {
                         </div>
                         <div className='bg-white ml-7 w-[40%] h-4 rounded-lg relative'>
                             <div className='bg-[#82FFCF] w-[40%] h-4 rounded-lg absolute left-0'></div>
+                            <h4 className='font-light absolute top-7'>Qs Left: 20</h4>
                         </div>
                         <img className='absolute bottom-0' src={petBeach}/>
                         <img className='absolute bottom-5 right-10 h-36' src={cocoTemp}/>
@@ -156,9 +134,7 @@ const CurrentHome = () => {
                     </div>
                 </div>
                 
-                <div className="w-[100%] px-7 py-4 min-h-72 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)]">
-                    <h1 className='text-3xl'>Problem List</h1>
-                </div>
+                <YourQuestionList />
             </div>
         </div>
     );
