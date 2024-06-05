@@ -1,0 +1,11 @@
+.question-diff[data-diff='medium'] {
+    color: #F0AD00;
+}
+
+.question-diff[data-diff='easy'] {
+    color: #0FC000
+}
+
+.question-diff[data-diff='hard'] {
+    color: #D92900
+}
