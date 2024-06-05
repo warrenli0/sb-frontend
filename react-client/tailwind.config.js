@@ -47,6 +47,6 @@ module.exports = {
   },
   plugins: [],
   corePlugins: {
-    preflight: false,
+    preflight: true, // changed back from false
   }
 };

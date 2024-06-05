@@ -1,0 +1,46 @@
+.module-card-cont {
+    width: 27%;
+    height: 90%;
+    background-color: #FF9D9D;
+    border-radius: 20px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: minmax(0, 60%) minmax(0, 40%);
+    border: 2px solid rgba(255, 255, 255, 0.75);
+}
+
+/* temporary colorings */
+.a665918c56be4de16c18f3b60 {
+    background-color: #FFCBB6;
+    border-color: #FFA681;
+}
+.a665918c56be4de16c18f3b60 h2 {
+    background-color: #FE8D5E;
+}
+.a665918c56be4de16c18f3b60 img[data-ver='m1']{
+    display: inline;
+}
+
+.a665973656be4de16c18f3d31 {
+    background-color: #D8FAFF;
+    border-color: #2EDFF9;
+}
+.a665973656be4de16c18f3d31 h2{
+    background-color: #2EDFF9;
+}
+.a665973656be4de16c18f3d31 img[data-ver='m2']{
+    display: inline;
+}
+
+.a6659736d6be4de16c18f3d33 {
+    background-color: #EED8FF;
+    border-color: #D196FF;
+}
+.a6659736d6be4de16c18f3d33 h2{
+    background-color: #D196FF;
+}
+.a6659736d6be4de16c18f3d33 img[data-ver='m3']{
+    display: inline;
+}
