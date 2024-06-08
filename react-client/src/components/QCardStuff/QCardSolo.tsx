@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import useQuestionService from '../../hooks/useQuestionService';
 import { Question } from '../../@types/common';
-import './QCardSolo.css';
+import './QCardSolo.css'; // necessary
 import { useAuth } from '../../hooks/useAuth';
+import ping from './images/blue-ping.png';
 
 interface QuestionDetailProps {
     loadQuestion?: Question;
@@ -68,13 +69,16 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion }) => {
 
     return (
         <div className='w-screen max-h-dvh relative'>
-            <div className='flex items-center justify-between h-11 bg-[#CAF0F8] px-4 border-b border-[rgba(140,147,153,.2)]'>
+            {/* top bar */}
+            <div className='flex items-center justify-between h-11 bg-[#CAF0F8] px-4 border-b border-[#040033]'>
                 <h3 className='text-white bg-[#040033] px-2 py-[.5px] rounded-md font-semibold cursor-pointer'><Link to={"/current-home"}>Exit</Link></h3>
                 <div className='flex items-center gap-4'>
                     <h1 className='text-2xl'>{question.title}</h1>
                     <h3><i>{question.category}</i></h3>
+                    {/* TODO: add subtopic + difficulty color */}
+                    {isCorrect !== null && (<div><i>{question.difficulty}</i></div>)}
                 </div>
-                <h3>Ping</h3>
+                <img src={ping} className='h-9 cursor-pointer'/>
             </div>
             <div className='flex relative' style={{"height": "calc(100dvh - 44px - 80px)"}}>
                 {/* Left section */}
@@ -95,7 +99,7 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion }) => {
                         </div>
                     )}
                 </div>
-                <div className='h-[80%] w-[2px] bg-[#040033] self-center rounded-md'></div>
+                <div className='h-[80%] w-[1px] bg-[#040033] self-center rounded-md'></div>
                 {/* Right section */}
                 <div className='flex-1 mx-10 my-7'>
                     {isCorrect === null ? (
