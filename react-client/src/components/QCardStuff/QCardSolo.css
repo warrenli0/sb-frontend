@@ -9,69 +9,26 @@
     transition: all .2s;
 }
 
-.qcard-answer-choice[data-ecard='false'] {
-    display: none;
-}
-
-.qcard-answer-choice[data-ecard='true'] {
-    display: flex;
-}
-
 .qcard-answer-choice:hover {
     background-color: #ffe49e;
 }
 
 .qcard-answer-choice.correct {
-    background-color: #d4edda;
+    background-color: #a5ebb5;
 }
 
 .qcard-answer-choice.incorrect {
-    background-color: #f8d7da;
+    background-color: #f4b4b9;
 }
 
 .qcard-answer-choice.selected {
     background-color: #FFD66D;
 }
 
-.qcard-answer-choice[data-ecard='true'] {
+/* remove hover */
+.qcard-answer-choice.ecard {
     cursor: auto;
     pointer-events: none;
-}
-
-.qcard-answer-choice[data-correct='true'] {
-    background-color: #58FF3D !important;
-}
-
-#choice1[data-selected='1'] {
-    background-color: #FFB800;
-}
-
-#choice1[data-selected='1'][data-correct='false'] {
-    background-color: #FF483D;
-}
-
-#choice2[data-selected='2'] {
-    background-color: #FFB800;
-}
-
-#choice2[data-selected='2'][data-correct='false'] {
-    background-color: #FF483D;
-}
-
-#choice3[data-selected='3'] {
-    background-color: #FFB800;
-}
-
-#choice3[data-selected='3'][data-correct='false'] {
-    background-color: #FF483D;
-}
-
-#choice4[data-selected='4'] {
-    background-color: #FFB800;
-}
-
-#choice4[data-selected='4'][data-correct='false'] {
-    background-color: #FF483D;
 }
 
 #qcard-letter {

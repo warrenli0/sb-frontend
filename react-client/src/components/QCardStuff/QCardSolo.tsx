@@ -101,7 +101,7 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion }) => {
                 </div>
                 <div className='h-[80%] w-[1px] bg-[#040033] self-center rounded-md'></div>
                 {/* Right section */}
-                <div className='flex-1 mx-10 my-7'>
+                <div className='flex-1 mx-10 my-7 overflow-scroll'>
                     {isCorrect === null ? (
                         <form onSubmit={handleSubmit} className='qcard-form flex flex-col gap-4'>
                             {question.answerChoices && question.answerChoices.map((choice, index) => (
