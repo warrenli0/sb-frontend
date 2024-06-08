@@ -68,10 +68,10 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion }) => {
     }
 
     return (
-        <div className='w-screen max-h-dvh relative'>
+        <div className='w-screen max-h-dvh relative text-[#040033]'>
             {/* top bar */}
             <div className='flex items-center justify-between h-11 bg-[#CAF0F8] px-4 border-b border-[#040033]'>
-                <h3 className='text-white bg-[#040033] px-2 py-[.5px] rounded-md font-semibold cursor-pointer'><Link to={"/current-home"}>Exit</Link></h3>
+                <h3 className='text-white bg-[#040033] px-2 py-[.5px] rounded-md font-semibold cursor-pointer hover:bg-[#3e34ac] transition-colors'><Link to={"/current-home"}>Exit</Link></h3>
                 <div className='flex items-center gap-4'>
                     <h1 className='text-2xl'>{question.title}</h1>
                     <h3><i>{question.category}</i></h3>
