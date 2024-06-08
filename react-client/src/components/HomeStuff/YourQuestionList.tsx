@@ -49,11 +49,11 @@ const QuestionListComponent = () => {
     };
 
     const handleQuestionClick = (questionId: string) => {
-        navigate(`/question/${questionId}`);
+        navigate(`/current-question/${questionId}`);
     };
 
     return (
-        <div className='w-[100%] px-7 py-4 min-h-72 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)]'>
+        <div className='w-[100%] px-7 py-4 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)]'>
             <div className='mb-4'>
                 <h1 className='text-3xl'>Problem List</h1>
             </div>
@@ -72,7 +72,7 @@ const QuestionListComponent = () => {
                 </div>
             </div>
 
-            <div className='w-full h-[2px] bg-[#040033] thisisabarBTW'></div>
+            <div className='w-full h-[1px] bg-[#040033] thisisabarBTW'></div>
             {filteredQuestions?.map(question => (
                 <div className=''>
                     <div key={question._id}
@@ -84,7 +84,7 @@ const QuestionListComponent = () => {
                         </div>
                         <div className='text-lg font-medium question-diff' data-diff={question.difficulty.toLowerCase()}>{question.difficulty}</div>
                     </div>
-                    <div className='w-full h-[2px] bg-[#040033] thisisabarBTW'></div>
+                    <div className='w-full h-[1px] bg-[#040033] thisisabarBTW'></div>
                 </div>
             ))}
             

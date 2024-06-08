@@ -6,10 +6,10 @@ import { useAuth } from '../../hooks/useAuth';
 
 import YourModuleList from './YourModuleList';
 import YourQuestionList from './YourQuestionList';
-import '../Home.css' // Change later
+import '../Home.css' // Change later > can delete
 import petBeach from './pet_images/pet-beach.png';
 import cocoTemp from './pet_images/coco-placeholder.png';
-import './CurrentHome.css' // needed for circle
+import './CurrentHome.css' // needed for minor stuff
 
 const CurrentHome = () => {
 
@@ -37,6 +37,7 @@ const CurrentHome = () => {
 
     return (
         <div>
+            {/*NavBar*/}
             <div className='bg-white text-[#040033] text-xl border-b border-[rgba(140,147,153,.2)] px-5 py-1.5 flex justify-between items-center'>
                 <h1 className='font-bold text-2xl'>SB</h1>
                 <div className='hidden md:flex gap-x-10 font-medium'>
@@ -49,7 +50,9 @@ const CurrentHome = () => {
             </div>
 
             <div className='bg-[#E9F5FF] min-h-dvh px-20 py-10 flex flex-col gap-10 text-[#040033]'>
+                {/*Top3*/}
                 <div className="flex justify-between w-full">
+                    {/*Practice*/}
                     <div className="w-[30%] min-h-60 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)]">
                         <div className='bg-[#D7E7FF] rounded-t-2xl flex items-center justify-between px-7 h-[25%]'>
                             <h1 className='text-3xl'>Practice</h1>
@@ -79,6 +82,7 @@ const CurrentHome = () => {
                         </div>
                     </div>
 
+                    {/*Daily Goal*/}
                     <div className="w-[30%] min-h-60 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)]">
                         <div className='bg-[#FFF2CB] text-3xl rounded-t-2xl flex items-center justify-between px-7 h-[25%]'>
                             <h1 className=''>Daily Goal</h1>
@@ -105,6 +109,7 @@ const CurrentHome = () => {
                         </div>
                     </div>
 
+                    {/*Pet*/}
                     <div className="w-[30%] min-h-60 bg-[#ddfff2] overflow-hidden rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)] relative">
                         <div className='flex items-center justify-between px-7 h-[25%]'>
                             <div className='flex items-center gap-3'>
@@ -121,6 +126,7 @@ const CurrentHome = () => {
                     </div>
                 </div>
 
+                {/*Your Modules*/}                          
                 <div className="w-[100%] h-72 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)] flex flex-col">
                     <div className='h-1/5 flex items-center justify-between px-7'>
                         <h1 className='text-3xl'>Your Modules</h1>
@@ -134,7 +140,13 @@ const CurrentHome = () => {
                     </div>
                 </div>
                 
+                {/*Q List*/}
                 <YourQuestionList />
+            </div>
+
+            {/*Footer*/}
+            <div className='bg-white text-[#040033] text-xl border-t border-[rgba(140,147,153,.2)] px-5 py-1.5 flex justify-between items-center'>
+                <h4 className=''>Copyright @ 2024 Scholars Beacon</h4>
             </div>
         </div>
     );

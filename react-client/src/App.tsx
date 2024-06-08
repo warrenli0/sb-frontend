@@ -23,6 +23,7 @@ import LatexComponent from './components/LatexComponent';
 import ModulesPage from './components/ModulesPage';
 
 import CurrentHome from './components/HomeStuff/CurrentHome';
+import QCardSolo from './components/QCardStuff/QCardSolo';
 
 const App = () => {
   const { currentUser, logout } = useAuth();
@@ -53,7 +54,9 @@ const App = () => {
         <Route path="/example-question" element={<QCardTemplate />} />
         <Route path="/latex-test" element={<LatexComponent />} />
 
+        {/*new ones*/}
         <Route path="/current-home" element={<CurrentHome />} />
+        <Route path="/current-question/:id" element={<QCardSolo />} />
       </Routes>
     </Router>
   );
