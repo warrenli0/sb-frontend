@@ -55,12 +55,12 @@ const QuestionListComponent = () => {
     return (
         <div className='w-[100%] px-7 py-4 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)]'>
             <div className='mb-4'>
-                <h1 className='text-3xl'>Problem List</h1>
+                <h1 className='text-3xl font-medium'>Problem List</h1>
             </div>
             <div className="w-full flex mb-6 justify-between">
                 <div className='flex space-x-4'>
                     <h1>Filters:</h1>
-                    <button className='bg-[#F2F3F4] text-[#555555] rounded-[12px] px-2 py-0.5 drop-shadow-[0_2px_0px_rgba(140,147,153,.3)] flex items-center justify-center gap-2 relative bottom-[2px]'>
+                    <button className='bg-[#F2F3F4] text-[#555555] font-medium rounded-[12px] px-2 py-0.5 drop-shadow-[0_2px_0px_rgba(140,147,153,.3)] flex items-center justify-center gap-2 relative bottom-[2px]'>
                         Difficulty
                         <svg height="10" viewBox="-2.5 -5 75 60" preserveAspectRatio="none">
                             <path d="M0,0 l35,50 l35,-50" fill="none" stroke="#555555" stroke-linecap="round" stroke-width="10" />

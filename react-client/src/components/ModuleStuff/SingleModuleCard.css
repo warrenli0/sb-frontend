@@ -22,6 +22,9 @@
 .bgCalculus img[data-ver='calc']{
     display: inline;
 }
+.bgCalculus h2:hover {
+    background-color: #fe763c;
+}
 
 .bgLinearAlgebra {
     background-color: #FFD9B6;
@@ -32,6 +35,9 @@
 }
 .bgLinearAlgebra img[data-ver='calc']{
     display: inline;
+}
+.bgLinearAlgebra h2:hover {
+    background-color: #ffb13b;
 }
 
 .a665973656be4de16c18f3d31 {

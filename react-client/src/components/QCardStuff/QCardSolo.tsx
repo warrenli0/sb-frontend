@@ -92,7 +92,7 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion }) => {
             </div>
             <div className='flex relative' style={{"height": "calc(100dvh - 44px - 80px)"}}>
                 {/* Left section */}
-                <div className='flex-1 mx-10 my-7 font-medium overflow-scroll flex flex-col gap-4'>
+                <div className='flex-1 mx-10 my-7 overflow-scroll flex flex-col gap-4'>
                     {question.problemStatement}
                      {/* Left hidden answer choices */}
                     {isCorrect !== null && (
@@ -100,7 +100,7 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion }) => {
                             {question.answerChoices && question.answerChoices.map((choice, index) => (
                                 <div
                                     key={index}
-                                    className={`qcard-answer-choice ${choice.isCorrect ? 'correct' : selectedAnswer === choice.text ? 'incorrect' : ''}`}
+                                    className={`qcard-answer-choice pointer-events-none ${choice.isCorrect ? 'correct' : selectedAnswer === choice.text ? 'incorrect' : ''}`}
                                 >
                                     <div id="qcard-letter"><h2><span>{String.fromCharCode(65 + index)}</span></h2></div>
                                     <div className='qcard-choice-cont'><h2>{choice.text}</h2></div>
@@ -140,7 +140,7 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion }) => {
                                 <div className='h-[1px] w-[60%] bg-[#040033] rounded-md'></div>
                                 <div className='flex gap-5 items-center h-full w-full justify-center'>
                                     <input className='w-8 h-8 cursor-pointer' type='checkbox'></input>
-                                    <h1 className='text-xl'>I understand this problem</h1>
+                                    <h1 className='text-xl font-medium'>I understand this problem</h1>
                                 </div>
                             </div>
                         </div>

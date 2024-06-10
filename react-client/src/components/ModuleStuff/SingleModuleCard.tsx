@@ -21,7 +21,7 @@ const SingleModuleCardComponent: React.FC<ModuleCardProps> = ({ module, backgrou
             <img className='hidden absolute top-0 right-0 h-4/5' data-ver='calc' src={calc}/>
             <img className='hidden absolute top-0 right-0 h-4/5' data-ver='m2' src={eng}/>
             <img className='hidden absolute top-0 right-0 h-4/5' data-ver='m3' src={read}/>
-            <div className='text-3xl z-10'>
+            <div className='text-3xl z-10 font-medium'>
                 <h1>{module.title}</h1>
             </div>
             <div className='flex justify-between items-end text-xl'>
@@ -29,9 +29,9 @@ const SingleModuleCardComponent: React.FC<ModuleCardProps> = ({ module, backgrou
                     <h3>ET: {module.estimatedTime} min</h3>
                     <h3>{masteryPercentage}</h3>
                 </div>
-                <div className={'flex justify-start'}>
-                    <h2 className='text-2xl font-semibold rounded-[12px] px-3 text-white'>
-                        <Link to={`/modules/${module._id}`}>Start</Link>
+                <div className={'flex justify-start cursor-pointer'}>
+                    <h2 className='text-2xl font-semibold rounded-[12px] px-3 text-white transition-colors'>
+                        <Link to={`/current-modules/${module._id}`}>Start</Link>
                     </h2>
                 </div>
             </div>

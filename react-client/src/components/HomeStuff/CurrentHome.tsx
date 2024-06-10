@@ -54,7 +54,7 @@ const CurrentHome = () => {
                     {/*Practice*/}
                     <div className="w-[30%] min-h-60 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)]">
                         <div className='bg-[#D7E7FF] rounded-t-2xl flex items-center justify-between px-7 h-[25%]'>
-                            <h1 className='text-3xl'>Practice</h1>
+                            <h1 className='text-3xl font-medium'>Practice</h1>
                             <h4 className='bg-[rgba(255,255,255,.7)] px-1 rounded-sm cursor-pointer'>{"Missed Qs >"}</h4>
                         </div>
                         <div className='h-[75%] px-7 flex flex-col justify-evenly'>
@@ -84,7 +84,7 @@ const CurrentHome = () => {
                     {/*Daily Goal*/}
                     <div className="w-[30%] min-h-60 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)]">
                         <div className='bg-[#FFF2CB] text-3xl rounded-t-2xl flex items-center justify-between px-7 h-[25%]'>
-                            <h1 className=''>Daily Goal</h1>
+                            <h1 className='font-medium'>Daily Goal</h1>
                             <h1 className='text-[#F23818] text-2xl font-semibold'>7 🔥</h1>
                         </div>
                         <div className='h-[75%] w-full px-7 flex flex-col justify-evenly relative'>
@@ -112,7 +112,7 @@ const CurrentHome = () => {
                     <div className="w-[30%] min-h-60 bg-[#ddfff2] overflow-hidden rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)] relative">
                         <div className='flex items-center justify-between px-7 h-[25%]'>
                             <div className='flex items-center gap-3'>
-                                <h1 className='text-3xl'>Coco</h1>
+                                <h1 className='text-3xl font-medium'>Coco</h1>
                                 <h4 className='font-light'>Level {petLevel}</h4>
                             </div>
                         </div>
@@ -128,7 +128,7 @@ const CurrentHome = () => {
                 {/*Your Modules*/}                          
                 <div className="w-[100%] h-72 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)] flex flex-col">
                     <div className='h-1/5 flex items-center justify-between px-7'>
-                        <h1 className='text-3xl'>Your Modules</h1>
+                        <h1 className='text-3xl font-medium'>Your Modules</h1>
                         <div className='flex items-center gap-3'>
                             <input className='w-5 h-5' type='checkbox'></input>
                             <h4>Show In-Progress</h4>

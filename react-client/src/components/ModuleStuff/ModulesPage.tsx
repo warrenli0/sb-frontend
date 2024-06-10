@@ -32,7 +32,7 @@ const ModulesPage: React.FC = () => {
                             {Object.keys(categoriesWithTopics).map(category => (
                                 <h1
                                     key={category}
-                                    className={`font-bold cursor-pointer ${selectedCategory === category ? 'text-[#040033]' : 'text-[#827984]'}`}
+                                    className={`font-semibold cursor-pointer ${selectedCategory === category ? 'text-[#040033]' : 'text-[#827984]'}`}
                                     onClick={() => handleCategoryChange(category)}
                                 >
                                     {category}
@@ -41,7 +41,7 @@ const ModulesPage: React.FC = () => {
                         </div>
                         <div className='flex gap-3'>
                             <h3>Filter by:</h3>
-                            <button className='bg-[#040033] text-white rounded-[12px] px-2 py-0.5 drop-shadow-[0_2px_0px_rgba(140,147,153,.3)] flex items-center justify-center gap-2 relative bottom-[2px]'>
+                            <button className='bg-[#040033] font-medium text-white rounded-[12px] px-2 py-0.5 drop-shadow-[0_2px_0px_rgba(140,147,153,.3)] flex items-center justify-center gap-2 relative bottom-[2px]'>
                                 Status
                                 <svg height="10" viewBox="-2.5 -5 75 60" preserveAspectRatio="none">
                                     <path d="M0,0 l35,50 l35,-50" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="10" />
@@ -64,7 +64,7 @@ const ModulesPage: React.FC = () => {
                         {categoriesWithTopics[selectedCategory]?.map(topic => (
                         <div key={topic} className='flex flex-col gap-4'>
                             <div className='flex justify-between items-center'>
-                                <h2 className='text-2xl font-bold text-gray-800 underline'>{topic}</h2>
+                                <h2 className='text-2xl font-medium text-gray-800 underline'>{topic}</h2>
                                 <h3>Completed 0 of 5</h3>
                             </div>
                             <div className='w-[100%] h-56'>
