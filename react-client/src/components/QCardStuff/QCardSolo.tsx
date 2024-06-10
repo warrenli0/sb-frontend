@@ -6,8 +6,12 @@ import './QCardSolo.css'; // necessary
 import { useAuth } from '../../hooks/useAuth';
 import ping from './images/blue-ping.png';
 import clicked_ping from './images/blue-ping-clicked.svg';
+import calc from './images/icon-calc.svg';
+import clicked_calc from './images/icon-calc-clicked.svg';
 import arrow from './images/arrow.svg';
+
 import DraggablePet from './DraggablePet';
+import DraggabbleDesmosCalculator from './DraggableDesmosCalculator';
 
 interface QuestionDetailProps {
     loadQuestion?: Question;
@@ -27,8 +31,9 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion, goNextQuestion
     // used for the understood
     const [isChecked, setIsChecked] = useState(false);
 
-    // for pet on screen
+    // for icons on top right; pet, calc
     const [showPet, setshowPet] = useState(false);
+    const [showCalc, setshowCalc] = useState(false);
 
     useEffect(() => {
         const fetchQuestion = async () => {
@@ -98,11 +103,17 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion, goNextQuestion
                     {/* TODO: add subtopic + difficulty color */}
                     {isCorrect !== null && (<div><i>{question.difficulty}</i></div>)}
                 </div>
-                <img src={ping} className={`h-9 cursor-pointer ${!showPet ? 'inline' : 'hidden'}`} onClick={() => { setshowPet(!showPet)}}/>
-                <img src={clicked_ping} className={`h-9 cursor-pointer ${showPet ? 'inline' : 'hidden'}`} onClick={() => { setshowPet(!showPet)}}/>
+                <div className='flex items-center gap-3'>
+                    <img src={calc} className={`h-8 cursor-pointer ${!showCalc ? 'inline' : 'hidden'}`} onClick={() => { setshowCalc(!showCalc)}}/>
+                    <img src={clicked_calc} className={`h-8 cursor-pointer ${showCalc ? 'inline' : 'hidden'}`} onClick={() => { setshowCalc(!showCalc)}}/>
+
+                    <img src={ping} className={`h-9 cursor-pointer ${!showPet ? 'inline' : 'hidden'}`} onClick={() => { setshowPet(!showPet)}}/>
+                    <img src={clicked_ping} className={`h-9 cursor-pointer ${showPet ? 'inline' : 'hidden'}`} onClick={() => { setshowPet(!showPet)}}/>
+                </div>
             </div>
             <div className='flex relative' style={{"height": "calc(100dvh - 44px - 80px)"}}>
                 <DraggablePet showPet={showPet}/>
+                <DraggabbleDesmosCalculator showCalc={showCalc}/>
                 {/* Left section */}
                 <div className='flex-1 mx-10 my-7 overflow-scroll flex flex-col gap-4'>
                     {question.problemStatement}
