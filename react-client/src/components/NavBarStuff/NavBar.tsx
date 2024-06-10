@@ -11,7 +11,7 @@ const NavBar = ({ under }: any) => {
                 <h1 className={`hover:underline underline-offset-2 cursor-pointer ${under==1 ? 'underline underline-offset-2 decoration-[#040033]' : ''}`}><Link to={"/current-modules"}>Modules</Link></h1>
                 <h1 className='hover:underline underline-offset-2 cursor-pointer'>Dashboard</h1>
                 <h1 className='hover:underline underline-offset-2 cursor-pointer'>Mock Exams</h1>
-                <button className="text-xl font-semibold rounded-[12px] c px-3 bg-[#3483F9] text-white drop-shadow-[0_2px_0px_rgba(9,85,199,1)] hover:bg-[#0e6bf8] transition-colors">Login</button>
+                <button className="text-xl font-semibold rounded-[12px] px-3 bg-[#3483F9] text-white drop-shadow-[0_2px_0px_rgba(9,85,199,1)] hover:bg-[#0e6bf8] transition-colors">Login</button>
             </div>
         </div>
     );

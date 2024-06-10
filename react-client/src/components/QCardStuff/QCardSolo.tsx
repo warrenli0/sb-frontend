@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import useQuestionService from '../../hooks/useQuestionService';
 import { Question } from '../../@types/common';
 import './QCardSolo.css'; // necessary
 import { useAuth } from '../../hooks/useAuth';
 import ping from './images/blue-ping.png';
+import arrow from './images/arrow.svg';
 
 interface QuestionDetailProps {
     loadQuestion?: Question;
@@ -63,6 +64,15 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion }) => {
         }
     };
 
+    // Create a ref for the form element
+    const formRef = useRef<HTMLFormElement>(null);
+    // Define the function to handle button click
+    const handleButtonClick = () => {
+        if (formRef.current) {
+            formRef.current.requestSubmit();
+          }
+    };
+
     if (!question) {
         return <div>Loading...</div>;
     }
@@ -103,7 +113,7 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion }) => {
                 {/* Right section */}
                 <div className='flex-1 mx-10 my-7 overflow-scroll'>
                     {isCorrect === null ? (
-                        <form onSubmit={handleSubmit} className='qcard-form flex flex-col gap-4'>
+                        <form ref={formRef} onSubmit={handleSubmit} className='qcard-form flex flex-col gap-4'>
                             {question.answerChoices && question.answerChoices.map((choice, index) => (
                                 <div
                                     key={index}
@@ -114,23 +124,34 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion }) => {
                                     <div className='qcard-choice-cont'><h2>{choice.text}</h2></div>
                                 </div>
                             ))}
-                            <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" disabled={loading}>
+                            <button type="submit" className="hidden mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" disabled={loading}>
                                 {loading ? 'Submitting...' : 'Submit'}
                             </button>
                         </form>
                     ) : (
-                        <div className=''>
-                            <h2 className='text-lg'><b>Explanation</b></h2>
-                            <div className="">
-                                {question.explanation + "YO DAZO"}
+                        <div className='h-full flex flex-col relative'>
+                            <div className='flex-1 overflow-scroll'>
+                                <h2 className='text-lg'><b>Explanation</b></h2>
+                                <div className="">
+                                    {question.explanation + "YO DAZO"}
+                                </div>
+                            </div>
+                            <div className='h-20 flex flex-col items-center'>
+                                <div className='h-[1px] w-[60%] bg-[#040033] rounded-md'></div>
+                                <div className='flex gap-5 items-center h-full w-full justify-center'>
+                                    <input className='w-8 h-8 cursor-pointer' type='checkbox'></input>
+                                    <h1 className='text-xl'>I understand this problem</h1>
+                                </div>
                             </div>
                         </div>
                     )}
-                    {message && <p className="mt-4 text-gray-600">{message}</p>}
+                    {/*message && <p className="mt-4 text-gray-600">{message}</p>*/}
                 </div>
             </div>
             <div className='h-20'>
-                <h3 className='text-right px-10'>{' Continue -->'}</h3>
+                <div className='flex items-start justify-end px-10'>
+                        <h1 className={`bg-[#040033] text-white text-xl font-semibold rounded-[12px] px-3 py-[2px] flex items-center justify-center gap-3 cursor-pointer hover:bg-[#3e34ac] transition-colors ${(isCorrect !==null) ? 'hidden' : 'inline'}  ${(selectedAnswer=='') ? 'hidden' : 'inline'}`} onClick={handleButtonClick}>Check <img className={`h-4`} src={arrow}/></h1>
+                </div>
             </div>
         </div>
     );
