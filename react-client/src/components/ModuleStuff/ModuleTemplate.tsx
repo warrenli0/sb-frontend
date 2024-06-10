@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import './ModuleTemplate.css';
 import badge from './images/temp-badge.png';
 import peng from './images/module-peng.png';
 
@@ -54,7 +53,7 @@ export default function ModuleTemplate({ }: any) {
                             <h3 >Fully complete this module to earn this badge!</h3>
                         </div>
                         <div className='flex items-center justify-center'>
-                            <Link to={`/modules/${module._id}/start`} className='text-2xl font-semibold rounded-[12px] bg-[#3483F9] px-3 text-white drop-shadow-[0_2px_0px_rgba(9,85,199,1)] hover:bg-[#0e6bf8] transition-colors'>Start</Link>
+                            <Link to={`/current-modules/${module._id}/start`} className='text-2xl font-semibold rounded-[12px] bg-[#3483F9] px-3 text-white drop-shadow-[0_2px_0px_rgba(9,85,199,1)] hover:bg-[#0e6bf8] transition-colors'>Start</Link>
                         </div>
                     </div>
                 </div>

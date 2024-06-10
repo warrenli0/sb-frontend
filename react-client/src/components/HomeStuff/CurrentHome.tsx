@@ -9,9 +9,9 @@ import YourQuestionList from './YourQuestionList';
 import '../Home.css' // Change later > TODO: delete
 import './CurrentHome.css' // needed for minor stuff
 
-import petBeach from './pet_images/pet-beach.png';
-import cocoTemp from './pet_images/coco-placeholder.png';
-import eggo from './pet_images/temp-egg.png';
+import petBeach from '../PetStuff/pet_images/pet-beach.png';
+import cocoTemp from '../PetStuff/pet_images/coco-placeholder.png';
+import eggo from '../PetStuff/pet_images/temp-egg.png';
 
 import NavBar from '../NavBarStuff/NavBar';
 

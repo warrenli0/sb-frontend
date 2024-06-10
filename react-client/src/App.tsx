@@ -26,6 +26,7 @@ import CurrentHome from './components/HomeStuff/CurrentHome';
 import QCardSolo from './components/QCardStuff/QCardSolo';
 import ModulesListPage from './components/ModuleStuff/ModulesPage';
 import ModuleBegin from './components/ModuleStuff/ModuleTemplate';
+import ModuleSession from './components/ModuleStuff/ModuleSession';
 
 const App = () => {
   const { currentUser, logout } = useAuth();
@@ -61,6 +62,7 @@ const App = () => {
         <Route path="/current-question/:id" element={<QCardSolo />} />
         <Route path="/current-modules" element={<ModulesListPage />} />
         <Route path="/current-modules/:id" element={<ModuleBegin />} />
+        <Route path="/current-modules/:id/start" element={<ModuleSession />} />
       </Routes>
     </Router>
   );
