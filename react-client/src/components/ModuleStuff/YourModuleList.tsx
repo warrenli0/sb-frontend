@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useModules from '../../hooks/useModules';
 import { Module } from '../../@types/common';
-import SingleModuleCardComponent from '../ModuleStuff/SingleModuleCard';
+import SingleModuleCardComponent from './SingleModuleCard';
 
 interface ModuleListProps {
     topic: string;
@@ -14,9 +14,10 @@ const YourModuleList: React.FC<ModuleListProps> = ({ topic }) => {
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
+    console.log("thing is : ", filteredModules.length);
 
     return (
-        <div className="w-full h-full flex justify-around">
+        <div className="w-full h-full grid grid-cols-3 place-items-center pb-4">
             {filteredModules.map((module, index) => (
                 <SingleModuleCardComponent
                     key={module._id}

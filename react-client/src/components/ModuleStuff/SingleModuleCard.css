@@ -1,7 +1,7 @@
 .module-card-cont {
-    width: 27%;
-    height: 90%;
-    background-color: #FF9D9D;
+    width: 80%;
+    height: 96%;
+    background-color: #EED8FF;
     border-radius: 20px;
     padding: 15px;
     box-sizing: border-box;
@@ -11,15 +11,26 @@
     border: 2px solid rgba(255, 255, 255, 0.75);
 }
 
-/* temporary colorings */
-.a665918c56be4de16c18f3b60 {
+/* colorings of module cards based on sutopic */
+.bgCalculus {
     background-color: #FFCBB6;
     border-color: #FFA681;
 }
-.a665918c56be4de16c18f3b60 h2 {
+.bgCalculus h2 {
     background-color: #FE8D5E;
 }
-.a665918c56be4de16c18f3b60 img[data-ver='m1']{
+.bgCalculus img[data-ver='calc']{
+    display: inline;
+}
+
+.bgLinearAlgebra {
+    background-color: #FFD9B6;
+    border-color: #FEBE5E;
+}
+.bgLinearAlgebra h2 {
+    background-color: #FEBE5E;
+}
+.bgLinearAlgebra img[data-ver='calc']{
     display: inline;
 }
 

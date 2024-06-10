@@ -17,8 +17,8 @@ const SingleModuleCardComponent: React.FC<ModuleCardProps> = ({ module, backgrou
     const estimatedTime = `ET: ${module.estimatedTime} min`;
 
     return (
-        <div className={`module-card-cont ${backgroundId} overflow-hidden w-1/3 min-w-[250px] a${module._id} relative`}>
-            <img className='hidden absolute top-0 right-0 h-4/5' data-ver='m1' src={calc}/>
+        <div className={`module-card-cont ${backgroundId} overflow-hidden w-1/3 min-w-[250px] bg${(module.topic).replace(/\s/g, "")} relative`}>
+            <img className='hidden absolute top-0 right-0 h-4/5' data-ver='calc' src={calc}/>
             <img className='hidden absolute top-0 right-0 h-4/5' data-ver='m2' src={eng}/>
             <img className='hidden absolute top-0 right-0 h-4/5' data-ver='m3' src={read}/>
             <div className='text-3xl z-10'>
@@ -26,7 +26,7 @@ const SingleModuleCardComponent: React.FC<ModuleCardProps> = ({ module, backgrou
             </div>
             <div className='flex justify-between items-end text-xl'>
                 <div>
-                    <h3>{module.category}</h3>
+                    <h3>ET: {module.estimatedTime} min</h3>
                     <h3>{masteryPercentage}</h3>
                 </div>
                 <div className={'flex justify-start'}>

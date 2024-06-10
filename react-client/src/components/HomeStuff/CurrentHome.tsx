@@ -4,12 +4,16 @@ import useQuestionService from '../../hooks/useQuestionService';
 import { Question } from '../../@types/common';
 import { useAuth } from '../../hooks/useAuth';
 
-import YourModuleList from './YourModuleList';
+import YourModuleList from '../ModuleStuff/YourModuleList';
 import YourQuestionList from './YourQuestionList';
-import '../Home.css' // Change later > can delete
+import '../Home.css' // Change later > TODO: delete
+import './CurrentHome.css' // needed for minor stuff
+
 import petBeach from './pet_images/pet-beach.png';
 import cocoTemp from './pet_images/coco-placeholder.png';
-import './CurrentHome.css' // needed for minor stuff
+import eggo from './pet_images/temp-egg.png';
+
+import NavBar from '../NavBarStuff/NavBar';
 
 const CurrentHome = () => {
 
@@ -18,6 +22,10 @@ const CurrentHome = () => {
     const [progress, setProgress] = useState(75); //unused
     const [probSolvedToday, setprobSolvedToday] = useState(12);
     const [goalProblems, setgoalProblems] = useState(21);
+    
+    /* practice card stuff */
+    const [reviewStyle, setreviewStyle] = useState(0); // 0 = as i go, 1 = per section, 2 = at the end
+    const [questionNums, setquestionNums] = useState(0);
 
     /*
         <div className="container mx-auto flex justify-between items-center">
@@ -38,45 +46,36 @@ const CurrentHome = () => {
     return (
         <div>
             {/*NavBar*/}
-            <div className='bg-white text-[#040033] text-xl border-b border-[rgba(140,147,153,.2)] px-5 py-1.5 flex justify-between items-center'>
-                <h1 className='font-bold text-2xl'>SB</h1>
-                <div className='hidden md:flex gap-x-10 font-medium'>
-                    <h1 className='hover:underline'>Home</h1>
-                    <h1>Modules</h1>
-                    <h1>Dashboard</h1>
-                    <h1>Mock Exams</h1>
-                    <button className="text-xl font-semibold rounded-[12px] c px-3 bg-[#3483F9] text-white drop-shadow-[0_2px_0px_rgba(9,85,199,1)]">Login</button>
-                </div>
-            </div>
+            <NavBar under={0}/>
 
-            <div className='bg-[#E9F5FF] min-h-dvh px-20 py-10 flex flex-col gap-10 text-[#040033]'>
+            <div className='bg-[#E9F5FF] min-h-dvh px-20 pt-5 pb-10 flex flex-col gap-10 text-[#040033]'>
                 {/*Top3*/}
                 <div className="flex justify-between w-full">
                     {/*Practice*/}
                     <div className="w-[30%] min-h-60 bg-white rounded-2xl drop-shadow-[0_4px_0px_rgba(140,147,153,.3)]">
                         <div className='bg-[#D7E7FF] rounded-t-2xl flex items-center justify-between px-7 h-[25%]'>
                             <h1 className='text-3xl'>Practice</h1>
-                            <h4 className='bg-[rgba(255,255,255,.7)] px-1 rounded-sm'>{"Missed Qs >"}</h4>
+                            <h4 className='bg-[rgba(255,255,255,.7)] px-1 rounded-sm cursor-pointer'>{"Missed Qs >"}</h4>
                         </div>
                         <div className='h-[75%] px-7 flex flex-col justify-evenly'>
                             <div className='flex flex-col gap-1'>
                                 <h2 className='text-lg underline'>Review</h2>
                                 <div className='flex items-center justify-between text-lg'>
-                                    <h2 className='bg-[#D7E7FF] px-1 rounded-sm'>As I Go</h2>
-                                    <h2>Per Section</h2>
-                                    <h2>At the End</h2>
+                                    <h2 className={`px-1 rounded-sm cursor-pointer transition-all hover:bg-[#f1f7ff] ${reviewStyle==0 ? 'bg-[#D7E7FF] hover:bg-[#D7E7FF]' : ''}`}  onClick={() => {setreviewStyle(0)}}>As I Go</h2>
+                                    <h2 className={`px-1 rounded-sm cursor-pointer transition-all hover:bg-[#f1f7ff] ${reviewStyle==1 ? 'bg-[#D7E7FF] hover:bg-[#D7E7FF]' : ''}`}  onClick={() => {setreviewStyle(1)}}>Per Section</h2>
+                                    <h2 className={`px-1 rounded-sm cursor-pointer transition-all hover:bg-[#f1f7ff] ${reviewStyle==2 ? 'bg-[#D7E7FF] hover:bg-[#D7E7FF]' : ''}`}  onClick={() => {setreviewStyle(2)}}>At the End</h2>
                                 </div>
                             </div>
                             <div className='flex flex-col gap-1'>
                                 <h2 className='text-lg underline'>Questions</h2>
                                 <div className='flex items-center justify-between'>
-                                    <div className='flex items-center gap-5 text-lg'>
-                                        <h2 className='bg-[#D7E7FF] px-1 rounded-sm'>5</h2>
-                                        <h2>10</h2>
-                                        <h2>15</h2>
-                                        <h2>{"∞"}</h2>
+                                    <div className='flex items-center gap-3 text-lg'>
+                                        <h2 className={`px-1 rounded-sm cursor-pointer transition-all hover:bg-[#f1f7ff] ${questionNums==0 ? 'bg-[#D7E7FF] hover:bg-[#D7E7FF]' : ''}`} onClick={() => {setquestionNums(0)}}>5</h2>
+                                        <h2 className={`px-1 rounded-sm cursor-pointer transition-all hover:bg-[#f1f7ff] ${questionNums==1 ? 'bg-[#D7E7FF] hover:bg-[#D7E7FF]' : ''}`} onClick={() => {setquestionNums(1)}}>10</h2>
+                                        <h2 className={`px-1 rounded-sm cursor-pointer transition-all hover:bg-[#f1f7ff] ${questionNums==2 ? 'bg-[#D7E7FF] hover:bg-[#D7E7FF]' : ''}`} onClick={() => {setquestionNums(2)}}>15</h2>
+                                        <h2 className={`px-1 rounded-sm cursor-pointer transition-all hover:bg-[#f1f7ff] ${questionNums==3 ? 'bg-[#D7E7FF] hover:bg-[#D7E7FF]' : ''}`} onClick={() => {setquestionNums(3)}}>{"∞"}</h2>
                                     </div>
-                                    <button className='text-2xl font-semibold rounded-[12px] bg-[#3483F9] px-3 text-white drop-shadow-[0_2px_0px_rgba(9,85,199,1)] relative bottom-1'>Start</button>
+                                    <button className='text-2xl font-semibold rounded-[12px] bg-[#3483F9] px-3 text-white drop-shadow-[0_2px_0px_rgba(9,85,199,1)] relative bottom-1 hover:bg-[#0e6bf8] transition-colors'>Start</button>
                                 </div>
                             </div>  
                         </div>
