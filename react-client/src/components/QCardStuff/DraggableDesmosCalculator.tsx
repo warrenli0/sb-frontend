@@ -4,9 +4,10 @@ declare const window: any;
 
 interface DraggableCalcProps {
     showCalc: boolean;
+    setshowCalc: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DraggableDesmosCalculator: React.FC<DraggableCalcProps> = ({ showCalc }) => {
+const DraggableDesmosCalculator: React.FC<DraggableCalcProps> = ({ showCalc, setshowCalc }) => {
   const [position, setPosition] = useState({ x: 50, y: window.innerHeight - 475 });
   const draggingRef = useRef(false);
   const offsetRef = useRef({ x: 0, y: 0 });
@@ -71,11 +72,11 @@ const DraggableDesmosCalculator: React.FC<DraggableCalcProps> = ({ showCalc }) =
       style={{ left: `${position.x}px`, top: `${position.y}px` }}
     >
       <div
-        className="w-full h-8 bg-[#3483F9] text-white font-semibold flex items-center justify-center cursor-move"
-        onMouseDown={handleMouseDown}
-      >
-       Calculator
-      </div>
+        className="w-full h-8 bg-[#3483F9] text-white font-semibold flex items-center justify-center cursor-move relative"
+        onMouseDown={handleMouseDown}> 
+            Calculator 
+            <div className='absolute right-2 text-sm font-medium cursor-pointer hover:text-[#ffe49e] transition-colors' onClick={() => { setshowCalc(false) }}>Close</div>
+        </div>
       <div ref={calculatorRef} className="w-full h-[calc(100%-2rem)]"></div>
     </div>
   );

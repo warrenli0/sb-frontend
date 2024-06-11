@@ -9,6 +9,9 @@ import clicked_ping from './images/blue-ping-clicked.svg';
 import calc from './images/icon-calc.svg';
 import clicked_calc from './images/icon-calc-clicked.svg';
 import arrow from './images/arrow.svg';
+import share from './images/share-icon.svg';
+import unflag from './images/unflag.svg';
+import flagged from './images/flagged.svg';
 
 import DraggablePet from './DraggablePet';
 import DraggabbleDesmosCalculator from './DraggableDesmosCalculator';
@@ -35,6 +38,9 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion, goNextQuestion
     const [showPet, setshowPet] = useState(false);
     const [showCalc, setshowCalc] = useState(false);
 
+    // for flagging
+    const [isFlagged, setisFlagged] = useState(false);
+
     useEffect(() => {
         const fetchQuestion = async () => {
             if (loadQuestion) {
@@ -50,6 +56,7 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion, goNextQuestion
 
         setSelectedAnswer('');
         setIsCorrect(null);
+        setisFlagged(false);
 
         fetchQuestion();
     }, [id, loadQuestion]);
@@ -111,11 +118,20 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion, goNextQuestion
                     <img src={clicked_ping} className={`h-9 cursor-pointer ${showPet ? 'inline' : 'hidden'}`} onClick={() => { setshowPet(!showPet)}}/>
                 </div>
             </div>
-            <div className='flex relative' style={{"height": "calc(100dvh - 44px - 80px)"}}>
+            {/* misc stuff */}
+            <div className='flex items-center justify-end h-9 px-3'>
+                <div className='relative'>
+                    <img className={`absolute top-[-6px] right-10 h-10 cursor-pointer ${isFlagged ? 'hidden' : '' }`} onClick={() => { setisFlagged(true) }} src={unflag}/>
+                    <img className={`absolute top-[-6px] right-10 h-10 cursor-pointer ${!isFlagged ? 'hidden' : '' }`} onClick={() => { setisFlagged(false) }} src={flagged}/>
+                    <img className='h-7 cursor-pointer' src={share}/>
+                </div>
+            </div>
+            {/* main content*/}
+            <div className='flex relative' style={{"height": "calc(100dvh - 44px - 36px - 80px)"}}>
                 <DraggablePet showPet={showPet}/>
-                <DraggabbleDesmosCalculator showCalc={showCalc}/>
+                <DraggabbleDesmosCalculator showCalc={showCalc} setshowCalc={setshowCalc}/>
                 {/* Left section */}
-                <div className='flex-1 mx-10 my-7 overflow-scroll flex flex-col gap-4'>
+                <div className='flex-1 mx-10 my-2 overflow-scroll flex flex-col gap-4'>
                     {question.problemStatement}
                      {/* Left hidden answer choices */}
                     {isCorrect !== null && (
@@ -134,7 +150,7 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion, goNextQuestion
                 </div>
                 <div className='h-[80%] w-[1px] bg-[#040033] self-center rounded-md'></div>
                 {/* Right section */}
-                <div className='flex-1 mx-10 my-7 overflow-scroll'>
+                <div className='flex-1 mx-10 my-2 overflow-scroll'>
                     {isCorrect === null ? (
                         <form ref={formRef} onSubmit={handleSubmit} className='qcard-form flex flex-col gap-4'>
                             {question.answerChoices && question.answerChoices.map((choice, index) => (
