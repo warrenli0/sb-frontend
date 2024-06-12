@@ -44,6 +44,10 @@ module.exports = {
         'user-entry': 'linear-gradient(0deg, rgba(0, 136, 132, 0.26), rgba(0, 136, 132, 0.26)),linear-gradient(0deg, #DBF5F4, #DBF5F4);',
       }),
     },
+    fontFamily: {
+      lato: ['Lato', 'sans-serif'],
+      mono: ['Source Code Pro', 'monospace'],
+    },
   },
   plugins: [],
   corePlugins: {

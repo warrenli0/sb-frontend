@@ -27,6 +27,7 @@ import QCardSolo from './components/QCardStuff/QCardSolo';
 import ModulesListPage from './components/ModuleStuff/ModulesPage';
 import ModuleBegin from './components/ModuleStuff/ModuleTemplate';
 import ModuleSession from './components/ModuleStuff/ModuleSession';
+import LatexTest from './components/QCardStuff/testlatex'; //deletelater
 
 const App = () => {
   const { currentUser, logout } = useAuth();
@@ -55,7 +56,6 @@ const App = () => {
         <Route path="/old-modules" element={<Modules />} />
         <Route path="/modules/example-module" element={<ModuleTemplate />} />
         <Route path="/example-question" element={<QCardTemplate />} />
-        <Route path="/latex-test" element={<LatexComponent />} />
 
         {/*new ones*/}
         <Route path="/current-home" element={<CurrentHome />} />
@@ -63,6 +63,7 @@ const App = () => {
         <Route path="/current-modules" element={<ModulesListPage />} />
         <Route path="/current-modules/:id" element={<ModuleBegin />} />
         <Route path="/current-modules/:id/start" element={<ModuleSession />} />
+        <Route path="/latex-test" element={<LatexTest />} /> {/*delete*/}
       </Routes>
     </Router>
   );
