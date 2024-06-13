@@ -29,21 +29,22 @@ const LatexTest: React.FC = ({  }) => {
         title: "bing",
         category: "chilling",
         difficulty: "easy",
-        problemStatement: "What is the median of the seven data values below? \\[10\\:, \\;13\\:, \\;14\\:, \\;14\\:, \\;12\\:, \\;13\\:, \\;14\\]",
+        problemStatement: "What is the median of the five data values below? \\[0\\:,\\;\\frac{1}{10\\:},\\;\\fbox{$\\frac{1}{2}$}\\:,\\;\\frac{3}{4}\\:,\\;1\\:\\]",
+        //"What is the median of the seven data values below? \\[10\\:, \\;13\\:, \\;14\\:, \\;14\\:, \\;12\\:, \\;13\\:, \\;14\\]",
         answerChoices: [
             {_id: "first",text:"10",isCorrect:false},
             {_id: "second",text:"12",isCorrect:false},
             {_id: "tthird",text:"13",isCorrect:true},
             {_id: "fourth",text:"14",isCorrect:false},
         ],
-        explanation: "his is multiline LaTeX using \\newline: \\( E = mc^2 \\newline F = ma \\)"
+        explanation: "bing chilling temp"
     });
     const latexLines = [
         'The answer is \\(\\textbf{C} \\).',
         'If you order the numbers, you get: \\[10\\:, \\;12\\:, \\;13\\:, \\;13\\:, \\;14\\:, \\;14\\:, \\;14\\]',
         'Since there are an odd number of elements, the median is simply the middle number of the ordered set. Thus, the median is 13.',
         '\\[10\\:, \\;12\\:, \\;13\\:, \\;\\underline{13}\\:, \\;14\\:, \\;14\\:, \\;14\\]',
-      ];
+    ];
 
     const [selectedAnswer, setSelectedAnswer] = useState('');
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);

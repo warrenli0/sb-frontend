@@ -7,7 +7,7 @@ interface DraggablePetProps {
 }
 
 const DraggablePet: React.FC<DraggablePetProps> = ({ showPet }) => {
-    const [position, setPosition] = useState({ x: 0, y: window.innerHeight - 236 });
+    const [position, setPosition] = useState({ x: 0, y: window.innerHeight - 272 });
     const draggingRef = useRef(false);
     const offsetRef = useRef({ x: 0, y: 0 });
   
@@ -29,7 +29,7 @@ const DraggablePet: React.FC<DraggablePetProps> = ({ showPet }) => {
         const boundedX = Math.max(0, Math.min(newX, window.innerWidth - 192));
         
         // Prevent moving off the top or bottom edge
-        const boundedY = Math.max(0, Math.min(newY, window.innerHeight - 236));
+        const boundedY = Math.max(0, Math.min(newY, window.innerHeight - 272));
   
         // Update position
         setPosition({
@@ -55,7 +55,7 @@ const DraggablePet: React.FC<DraggablePetProps> = ({ showPet }) => {
 
   return (
     <div
-      className={`w-48 h-48 bg-[#3483F9] z-20 border-2 border-[#040033] overflow-hidden rounded-sm cursor-pointer  ${showPet ? 'absolute' : 'hidden'} `}
+      className={`w-48 h-48 bg-[#3483F9] z-30 border-2 border-[#040033] overflow-hidden rounded-sm cursor-pointer  ${showPet ? 'absolute' : 'hidden'} `}
       style={{ position: 'absolute', left: `${position.x}px`, top: `${position.y}px` }}
       onMouseDown={handleMouseDown}
     >

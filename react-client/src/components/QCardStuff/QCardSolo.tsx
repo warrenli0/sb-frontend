@@ -12,6 +12,10 @@ import arrow from './images/arrow.svg';
 import share from './images/share-icon.svg';
 import unflag from './images/unflag.svg';
 import flagged from './images/flagged.svg';
+import thumbsUp from './images/thumbs-up.svg';
+import thumbsDown from './images/thumbs-down.svg';
+import greenthumbsUp from './images/green-thumbs.svg';
+import redthumbsDown from './images/red-thumbs.svg';
 
 import DraggablePet from './DraggablePet';
 import DraggabbleDesmosCalculator from './DraggableDesmosCalculator';
@@ -40,6 +44,9 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion, goNextQuestion
 
     // for flagging
     const [isFlagged, setisFlagged] = useState(false);
+
+    // for thumbs up / down
+    const [thumbsStatus, setthumbsStatus] = useState(0); // default
 
     useEffect(() => {
         const fetchQuestion = async () => {
@@ -169,8 +176,16 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion, goNextQuestion
                         </form>
                     ) : (
                         <div className='h-full flex flex-col relative'>
-                            <div className='flex-1 overflow-scroll'>
-                                <h2 className='text-lg'><b>Explanation</b></h2>
+                            <div className='flex-1 overflow-scroll flex flex-col gap-2'>
+                                <div className='flex items-center gap-4 relative'>
+                                    <h2 className='text-lg'><b>Explanation</b></h2>
+                                    <div className='flex gap-1'>
+                                        <img className={`h-5 w-5 relative bottom-[2px] cursor-pointer ${thumbsStatus == 1 ? 'hidden' : ''}`} onClick={() => { setthumbsStatus(1) }} src={thumbsUp}/>
+                                        <img className={`h-5 w-5 relative bottom-[2px] cursor-pointer ${thumbsStatus != 1 ? 'hidden' : ''}`} onClick={() => { setthumbsStatus(0) }} src={greenthumbsUp}/>
+                                        <img className={`h-5 w-5 relative bottom-[2px] cursor-pointer ${thumbsStatus == 2 ? 'hidden' : ''}`} onClick={() => { setthumbsStatus(2) }} src={thumbsDown}/>
+                                        <img className={`h-5 w-5 relative bottom-[2px] cursor-pointer ${thumbsStatus != 2 ? 'hidden' : ''}`} onClick={() => { setthumbsStatus(0) }} src={redthumbsDown}/>
+                                    </div>
+                                </div>
                                 <div className="">
                                     {question.explanation + "YO DAZO"}
                                 </div>

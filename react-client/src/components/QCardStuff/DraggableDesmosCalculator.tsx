@@ -8,7 +8,7 @@ interface DraggableCalcProps {
 }
 
 const DraggableDesmosCalculator: React.FC<DraggableCalcProps> = ({ showCalc, setshowCalc }) => {
-  const [position, setPosition] = useState({ x: 50, y: window.innerHeight - 475 });
+  const [position, setPosition] = useState({ x: 50, y: window.innerHeight - 525 });
   const draggingRef = useRef(false);
   const offsetRef = useRef({ x: 0, y: 0 });
   const calculatorRef = useRef<HTMLDivElement | null>(null);
@@ -68,7 +68,7 @@ const DraggableDesmosCalculator: React.FC<DraggableCalcProps> = ({ showCalc, set
 
   return (
     <div
-      className={`absolute w-[600px] h-[400px] bg-white border border-gray-300 rounded-lg shadow-lg ${showCalc ? 'absolute' : 'hidden'}`}
+      className={`absolute w-[600px] h-[400px] z-20 bg-white border border-gray-300 rounded-lg shadow-lg ${showCalc ? 'absolute' : 'hidden'}`}
       style={{ left: `${position.x}px`, top: `${position.y}px` }}
     >
       <div
