@@ -16,7 +16,6 @@ import flagged from './images/flagged.svg';
 import DraggablePet from './DraggablePet';
 import DraggabbleDesmosCalculator from './DraggableDesmosCalculator';
 
-import LatexRenderer from './LatexRenderer';
 import { MathJaxContext, MathJax } from 'better-react-mathjax';
 
 const mathJaxConfig = {
