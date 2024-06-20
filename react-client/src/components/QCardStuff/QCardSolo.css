@@ -9,6 +9,16 @@
     transition: all .2s;
 }
 
+.strikethroughdiv {
+    position: absolute;
+    top: 50%;
+    left: -10px; /* Adjust this based on your padding */
+    right: -10px; /* Adjust this based on your padding */
+    height: 1px;
+    background-color: black;
+    transform: translateY(-50%);
+}
+
 .qcard-answer-choice:hover {
     background-color: #ffe49e;
 }
@@ -46,6 +56,34 @@
     border-radius: 50%;
     border: 2px solid #040033;
     font-weight: 500;
+}
+
+#qcard-letter-mini {
+    display: flex;
+    justify-content: center;
+}
+
+
+#qcard-letter-mini span {
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid #040033;
+    font-weight: 500;
+    position: relative; /* Required for positioning the pseudo-element */
+}
+
+#qcard-letter-mini span::after {
+    content: '';
+    position: absolute;
+    width: 140%; /* Make the line span the full width of the circle */
+    height: 1px; /* Adjust the thickness of the line */
+    background-color: #040033; /* Color of the line */
+    top: 50%; /* Position the line in the center vertically */
+    transform: translateY(-50%); /* Adjust to center the line perfectly */
 }
 
 .qcard-choice-cont {

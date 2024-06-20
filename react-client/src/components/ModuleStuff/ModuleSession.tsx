@@ -63,7 +63,7 @@ const ModuleSession: React.FC = () => {
                 <h3 className="text-lg font-semibold">Question {currentQuestionIndex + 1} of {module.questions.length}</h3>
                 <p className="text-gray-700">{currentQuestion.problemStatement}</p>
             </div> */}
-            <h3 className="z-10 absolute left-20 text-lg font-semibold">Question {currentQuestionIndex + 1} of {module.questions.length}</h3>
+            <h3 className="z-10 absolute left-[12rem] text-lg font-semibold">Question {currentQuestionIndex + 1} of {module.questions.length}</h3>
 
             <QuestionDetailComponent loadQuestion={currentQuestion} goNextQuestion={handleNextQuestion}/>
             {/* handled in ^
