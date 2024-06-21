@@ -40,6 +40,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     const logout = () => {
         localStorage.removeItem('currentUser');
         setCurrentUser(null);
+        window.location.reload(); // ani added: reload the page
     };
 
     return (

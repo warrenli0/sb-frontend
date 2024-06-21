@@ -65,6 +65,8 @@ const ModuleSession: React.FC = () => {
             </div> */}
             <h3 className="z-10 absolute left-[12rem] text-lg font-semibold">Question {currentQuestionIndex + 1} of {module.questions.length}</h3>
 
+            {/* TODO: question navigation */}
+
             <QuestionDetailComponent loadQuestion={currentQuestion} goNextQuestion={handleNextQuestion}/>
             {/* handled in ^
                 <button

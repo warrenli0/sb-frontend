@@ -3,11 +3,14 @@ import './Profile.css'
 import tweet from '../images/tweet.png';
 
 import NavBar from './NavBar';
+import { useAuth } from '../hooks/useAuth';
 
 
 import { useState, useEffect } from "react";
 
 export default function Profile({ }) {
+    const { currentUser, logout } = useAuth();
+
     return (
         <div className='profile-cont'>
             <NavBar />
@@ -16,7 +19,13 @@ export default function Profile({ }) {
                     <img src={tweet} />
                 </div>
                 <div>
-                    <h1>Neal Khemani</h1>
+                    <h1>
+                    {currentUser ? (
+                        currentUser.email
+                    ) : (
+                        "Neal Khemani"
+                    )}
+                    </h1>
                     <h2>King of Chibis</h2>
                 </div>
             </div>
