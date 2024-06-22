@@ -49,7 +49,7 @@ const QuestionListComponent = () => {
     };
 
     const handleQuestionClick = (questionId: string) => {
-        navigate(`/current-question/${questionId}`);
+        navigate(`/question-page/${questionId}`);
     };
 
     return (

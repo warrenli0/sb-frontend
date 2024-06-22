@@ -29,6 +29,7 @@ import ModuleBegin from './components/ModuleStuff/ModuleTemplate';
 import ModuleSession from './components/ModuleStuff/ModuleSession';
 import LatexTest from './components/QCardStuff/testlatex'; //deletelater
 import TempLoginComponent from './components/LoginStuff/Login'; // change the name latre
+import QuestionPage from './components/QuestionPageStuff/QuestionPage';
 
 const App = () => {
   const { currentUser, logout } = useAuth();
@@ -66,6 +67,7 @@ const App = () => {
         <Route path="/current-modules/:id/start" element={<ModuleSession />} />
         <Route path="/latex-test" element={<LatexTest />} /> {/*delete*/}
         <Route path="/current-login" element={<TempLoginComponent />} />
+        <Route path="/question-page/:id" element={<QuestionPage />} />
 
       </Routes>
     </Router>

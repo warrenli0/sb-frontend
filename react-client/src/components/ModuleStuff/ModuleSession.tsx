@@ -4,6 +4,7 @@ import useModules from '../../hooks/useModules';
 import useQuestions from '../../hooks/useQuestionService';
 import { Module, Question } from '../../@types/common';
 import QuestionDetailComponent from '../QCardStuff/QCardSolo';
+import QuestionPage from '../QuestionPageStuff/QuestionPage';
 
 const ModuleSession: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -56,7 +57,7 @@ const ModuleSession: React.FC = () => {
     }
 
     return (
-        <div className=" mx-auto bg-white shadow-lg rounded-md ">
+        <div className="">
             {/*
             <h2 className="text-2xl font-bold text-gray-800 mb-4">{module.title}</h2>
             <div className="mb-4">
@@ -67,7 +68,7 @@ const ModuleSession: React.FC = () => {
 
             {/* TODO: question navigation */}
 
-            <QuestionDetailComponent loadQuestion={currentQuestion} goNextQuestion={handleNextQuestion}/>
+            <QuestionPage loadQuestion={currentQuestion} goNextQuestion={handleNextQuestion}/>
             {/* handled in ^
                 <button
                 onClick={handleNextQuestion}
