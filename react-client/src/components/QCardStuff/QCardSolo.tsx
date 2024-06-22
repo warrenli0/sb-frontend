@@ -10,6 +10,7 @@ import calc from './images/icon-calc.svg';
 import clicked_calc from './images/icon-calc-clicked.svg';
 import note from './images/note-icon.svg';
 import clicked_note from './images/note-icon-clicked.svg';
+import redNote from './images/icon-calc-red.svg';
 import arrow from './images/arrow.svg';
 import share from './images/share-icon.svg';
 import unflag from './images/unflag.svg';
@@ -184,7 +185,8 @@ const QCardSolo: React.FC<QuestionDetailProps> = ({ loadQuestion, goNextQuestion
                     <img src={calc} className={`h-8 pr-[6px] cursor-pointer ${!showCalc ? 'inline' : 'hidden'}`} onClick={() => { setshowCalc(!showCalc)}}/>
                     <img src={clicked_calc} className={`h-8 pr-[6px] cursor-pointer ${showCalc ? 'inline' : 'hidden'}`} onClick={() => { setshowCalc(!showCalc)}}/>
 
-                    <img src={note} className={`h-8 cursor-pointer ${!showNote ? 'inline' : 'hidden'}`} onClick={() => { setshowNote(!showNote)}}/>
+                    <img src={note} className={`h-8 cursor-pointer ${(!showNote && (isCorrect || isCorrect==null)) ? 'inline' : 'hidden'}`} onClick={() => { setshowNote(!showNote)}}/>
+                    <img src={redNote} className={`h-8 cursor-pointer ${(!showNote && isCorrect == false) ? 'inline' : 'hidden'}`} onClick={() => { setshowNote(!showNote)}}/>
                     <img src={clicked_note} className={`h-8 cursor-pointer ${showNote ? 'inline' : 'hidden'}`} onClick={() => { setshowNote(!showNote)}}/>
 
                     <img src={ping} className={`h-9 cursor-pointer ${!showPet ? 'inline' : 'hidden'}`} onClick={() => { setshowPet(!showPet)}}/>

@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import tweet from './images/tweet.svg';
 
 const NavBar = ({ under }: any) => {
-    const [openoptions, setopenoptions] = useState(false);
+    const [openMenu, setOpenMenu] = useState(false);
     const { currentUser, logout } = useAuth();
 
     return (
@@ -17,10 +17,10 @@ const NavBar = ({ under }: any) => {
                 <h1 className='hover:underline underline-offset-2 cursor-pointer'>Mock Exams</h1>
                 {currentUser ? (
                     <>
-                        <img src={tweet} className="h-7 cursor-pointer" onClick={() => setopenoptions(!openoptions)}/>
-                        <div className={`${openoptions ? 'block' : 'hidden'} flex flex-col gap-1 z-10 border-l border-b rounded-bl-md absolute right-0 top-[44px] bg-white p-2`}>
-                            <h1>Profile</h1>
-                            <button onClick={logout} className="text-xl font-semibold rounded-[12px] px-3 bg-[#3483F9] text-white drop-shadow-[0_2px_0px_rgba(9,85,199,1)] hover:bg-[#0e6bf8] transition-colors">Logout</button>
+                        <img src={tweet} className="h-7 cursor-pointer" onClick={() => setOpenMenu(!openMenu)}/>
+                        <div className={`${openMenu ? 'block' : 'hidden'} flex flex-col gap-1 z-10 border-l border-b border-t rounded-bl-md absolute right-0 top-[44px] bg-gray-100 p-2`}>
+                            <h1 className='cursor-pointer hover:underline text-lg font-normal'><Link to={"/profile"}>Profile</Link></h1>
+                            <button onClick={logout} className="text-lg font-semibold rounded-[12px] px-2 bg-[#3483F9] text-white drop-shadow-[0_2px_0px_rgba(9,85,199,1)] hover:bg-[#0e6bf8] transition-colors">Logout</button>
                         </div>  
                     </>
                 ) : (
