@@ -150,6 +150,7 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ loadQuestion, goNextQuestio
                     </div>
                 </div>
                         
+                {/* if goquestionnext not null, means we in practice set / module -> show sidebar */}
                 {/* main stuff : question detail */}
                 <div className='flex relative' style={{"height": "calc(100dvh - 44px - 36px - 80px)"}}>
                     {/* Left section */}
@@ -228,6 +229,8 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ loadQuestion, goNextQuestio
                         {/*message && <p className="mt-4 text-gray-600">{message}</p>*/}
                     </div>
                 </div>
+
+                {/* bottom to go next */}
                 <div className='h-20'>
                     <div className='flex items-start justify-end px-10'>
                         <h1 className={`bg-[#040033] text-white text-xl font-semibold rounded-[12px] px-3 py-[2px] flex items-center justify-center gap-3 cursor-pointer hover:bg-[#3e34ac] transition-colors ${(isCorrect !==null) ? 'hidden' : 'inline'}  ${(selectedAnswer=='') ? 'hidden' : 'inline'}`} onClick={handleButtonClick}>Check <img className={`h-4`} src={arrow}/></h1>
